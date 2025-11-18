@@ -1,0 +1,118 @@
+<?php
+namespace App\Http\Controllers;
+
+use {{ namespacedModel }};
+use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Auth;
+
+class {{ class }} extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        $this->middleware('permission:{{ modelVariable }}-list|{{ modelVariable }}-create|{{ modelVariable }}-edit|{{ modelVariable }}-delete', ['only' => ['index', 'store']]);
+
+        $this->middleware('permission:{{ modelVariable }}-create', ['only' => ['create', 'store']]);
+
+        $this->middleware('permission:{{ modelVariable }}-edit', ['only' => ['edit', 'update']]);
+
+        $this->middleware('permission:{{ modelVariable }}-delete', ['only' => ['destroy']]);
+    }
+
+    public function index()
+    {
+        $count = {{ model }}::count();
+
+        return view('{{ modelVariable }}.index', compact('count'));
+    }
+
+    public function create()
+    {
+        return view('{{ modelVariable }}.create');
+    }
+
+    public function store(Request $request)
+    {
+         if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('Photo/' . $name_gen);
+
+            $last_thumb = 'Photo/' . $name_gen;
+        }else{
+            $last_thumb = null;
+        }
+
+         if ($request->hasFile('document')) {
+            $document = $request->file('document');
+            $documentname = time() . '.' . $document->getClientOriginalExtension();
+            $document->move(public_path('/Document'), $documentname);
+        } else {
+            $documentname = 'default.pdf';
+        }
+
+        $validated = $request->validate([
+
+        ]);
+
+        ${{ modelVariable }} = {{ model }}::create($validated);
+
+        return redirect()->route('{{ modelVariable }}.index')->with('success', '{{ model }} Created successfully');
+
+    }
+
+    public function show($id)
+    {
+        ${{ modelVariable }} = {{ model }}::findOrFail($id);
+    }
+
+    public function edit($id)
+    {
+        ${{ modelVariable }} = {{ model }}::findOrFail($id);
+
+        return view('{{ modelVariable }}.edit', compact('{{ modelVariable }}'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        ${{ modelVariable }} = {{ model }}::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('Photo/' . $name_gen);
+
+            $last_thumb = 'Photo/' . $name_gen;
+        }else{
+            $last_thumb = ${{ modelVariable }}->image;
+        }
+
+         if ($request->hasFile('document')) {
+            $document = $request->file('document');
+            $documentname = time() . '.' . $document->getClientOriginalExtension();
+            $document->move(public_path('/Document'), $documentname);
+        } else {
+            $documentname = ${{ modelVariable }}->document;
+        }
+
+        $validated = $request->validate([
+
+        ]);
+
+
+        ${{ modelVariable }}->update($validated);
+
+        return redirect()->route('{{ modelVariable }}.index')->with('update', '{{ model }} Updated successfully');
+
+    }
+
+    public function destroy($id)
+    {
+        ${{ modelVariable }} = {{ model }}::findOrFail($id);
+        ${{ modelVariable }}->delete();
+
+        return redirect()->route('{{ modelVariable }}.index')->with('delete', '{{ model }} Deleted successfully');
+    }
+}

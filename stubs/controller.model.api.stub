@@ -1,0 +1,42 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use Illuminate\Http\Request;
+
+class {{ class }}
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        $this->middleware('permission:{{ modelVariable }}-list|{{ modelVariable }}-create|{{ modelVariable }}-edit|{{ modelVariable }}-delete', ['only' => ['index', 'store']]);
+
+        $this->middleware('permission:{{ modelVariable }}-create', ['only' => ['create', 'store']]);
+
+        $this->middleware('permission:{{ modelVariable }}-edit', ['only' => ['edit', 'update']]);
+
+        $this->middleware('permission:{{ modelVariable }}-delete', ['only' => ['destroy']]);
+    }
+
+    public function index()
+    {
+    }
+
+    public function store(Request $request)
+    {
+    }
+
+    public function show({{ model }} ${{ modelVariable }})
+    {
+    }
+
+    public function update(Request $request, {{ model }} ${{ modelVariable }})
+    {
+    }
+
+    public function destroy({{ model }} ${{ modelVariable }})
+    {
+    }
+}
