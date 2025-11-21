@@ -94,6 +94,14 @@
             </a>
         </li>
         @endcan
+         {{-- @can('organization-list') --}}
+        <li class="menu-item {{ Request::is('organization') ? 'active' :'' }}">
+            <a href="{{ route('organization.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-medal"></i>
+                <div data-i18n="Analytics">Organization</div>
+            </a>
+        </li>
+        {{-- @endcan --}}
         @can('abroad-list')
         <li class="menu-item {{ Request::is('abroad') ? 'active' :'' }}">
             <a href="{{ route('abroad.index') }}" class="menu-link">

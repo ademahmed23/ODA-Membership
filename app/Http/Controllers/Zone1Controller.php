@@ -63,7 +63,7 @@ public function index(Request $request)
             ->whereMonth('date', now()->month)
             ->whereYear('date', now()->year)
             ->exists();
-        return $item;
+        return $item;   
     });
 
     return view('zone1.index', compact('reports', 'name', 'zone', 'woreda', 'export', 'woredas', 'count'));

@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\City1Controller;
 use App\Http\Controllers\City2Controller;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\City3Controller;
 use App\Http\Controllers\City4Controller;
 use App\Http\Controllers\City5Controller;
@@ -126,6 +127,7 @@ Route::middleware([
     Route::resource('zone19', Zone19Controller::class);
     Route::resource('zone20', Zone20Controller::class);
     Route::resource('zone21', Zone21Controller::class);
+    Route::resource('organization', OrganizationController::class);
     // import
     Route::post('zone1/import', [Zone1Controller::class, 'import'])->name('zone1.import');
     Route::post('zone2/import', [Zone2Controller::class, 'import'])->name('zone2.import');
