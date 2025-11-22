@@ -167,7 +167,7 @@
                         <tr>
                             <th>Number </th>
                             <th>Zone</th>
-                            <th>Woreda</th>
+                            <th>Woreda/City</th>
                             <th>Position</th>
                             <th>Date</th>
                             <th>Total</th>
@@ -179,7 +179,7 @@
                         <tr>
                             <td class="border py-2">{{ $report->id }}</td>
                             <td class="border py-2">{{ $report->zone }}</td>
-                            <td class="border py-2">{{ $report->woreda }}</td>
+                            <td class="border py-2">{{ $report->woreda_or_city }}</td>
                             <td class="border py-2">{{ $report->position }}</td>
                             @if($report->date)
                             <td class="border py-2">{{ $report->date }}</td>

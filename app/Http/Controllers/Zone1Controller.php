@@ -250,7 +250,7 @@ public function index(Request $request)
 
             return redirect()->route('zone1.index')->with('success', 'Zone1 Imported successfully');
         } catch (\Exception $e) {
-            // return redirect()->back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
             return redirect()->back();
         }
     }

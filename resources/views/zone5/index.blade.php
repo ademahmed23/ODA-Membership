@@ -14,6 +14,7 @@
 @section('exportRoute', url('zoneMember-export/' . $zone . '/' . $woreda))
 @section('exportText', 'Download')
 
+
 @section('table')
 <livewire:zone5-table />
 @endsection

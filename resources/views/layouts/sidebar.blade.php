@@ -48,75 +48,70 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item {{ Request::is('admin') ? 'active' :'' }}">
+        <li class="menu-item {{ Request::is('admin') ? 'active' : '' }}">
             <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
         @can('user-list')
-        <li class="menu-item {{ Request::is('users') ? 'active' :'' }}">
-            <a href="{{ route('users.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Analytics">Users</div>
-            </a>
-        </li>
+            <li class="menu-item {{ Request::is('users') ? 'active' : '' }}">
+                <a href="{{ route('users.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-user"></i>
+                    <div data-i18n="Analytics">Users</div>
+                </a>
+            </li>
         @endcan
         @can('role-list')
-        <li class="menu-item {{ Request::is('roles') ? 'active' :'' }}">
-            <a href="{{ route('roles.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user-plus"></i>
-                <div data-i18n="Analytics">Roles</div>
-            </a>
-        </li>
+            <li class="menu-item {{ Request::is('roles') ? 'active' : '' }}">
+                <a href="{{ route('roles.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-user-plus"></i>
+                    <div data-i18n="Analytics">Roles</div>
+                </a>
+            </li>
         @endcan
         @can('news-list')
-        <li class="menu-item {{ Request::is('news') ? 'active' :'' }}">
-            <a href="{{ route('news.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-news"></i>
-                <div data-i18n="Analytics">News</div>
-            </a>
-        </li>
+            <li class="menu-item {{ Request::is('news') ? 'active' : '' }}">
+                <a href="{{ route('news.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-news"></i>
+                    <div data-i18n="Analytics">News</div>
+                </a>
+            </li>
         @endcan
         @can('announcement-list')
-        <li class="menu-item {{ Request::is('announcement') ? 'active' :'' }}">
-            <a href="{{ route('announcement.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-microphone"></i>
-                <div data-i18n="Analytics">Announcements</div>
-            </a>
-        </li>
+            <li class="menu-item {{ Request::is('announcement') ? 'active' : '' }}">
+                <a href="{{ route('announcement.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-microphone"></i>
+                    <div data-i18n="Analytics">Announcements</div>
+                </a>
+            </li>
         @endcan
         @can('honorable-list')
-        <li class="menu-item {{ Request::is('honorable') ? 'active' :'' }}">
-            <a href="{{ route('honorable.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-medal"></i>
-                <div data-i18n="Analytics">Honorable</div>
-            </a>
-        </li>
+            <li class="menu-item {{ Request::is('honorable') ? 'active' : '' }}">
+                <a href="{{ route('honorable.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-medal"></i>
+                    <div data-i18n="Analytics">Honorable</div>
+                </a>
+            </li>
         @endcan
-         {{-- @can('organization-list') --}}
-        <li class="menu-item {{ Request::is('organization') ? 'active' :'' }}">
-            <a href="{{ route('organization.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-medal"></i>
-                <div data-i18n="Analytics">Organization</div>
-            </a>
-        </li>
+        {{-- @can('organization-list') --}}
+
         {{-- @endcan --}}
         @can('abroad-list')
-        <li class="menu-item {{ Request::is('abroad') ? 'active' :'' }}">
-            <a href="{{ route('abroad.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-medal"></i>
-                <div data-i18n="Analytics">Abroad</div>
-            </a>
-        </li>
+            <li class="menu-item {{ Request::is('abroad') ? 'active' : '' }}">
+                <a href="{{ route('abroad.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-medal"></i>
+                    <div data-i18n="Analytics">Abroad</div>
+                </a>
+            </li>
         @endcan
         @can('regional-list')
-        <li class="menu-item {{ Request::is('regional') ? 'active' :'' }}">
-            <a href="{{ route('regional.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-medal"></i>
-                <div data-i18n="Analytics">Regional</div>
-            </a>
-        </li>
+            <li class="menu-item {{ Request::is('regional') ? 'active' : '' }}">
+                <a href="{{ route('regional.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-medal"></i>
+                    <div data-i18n="Analytics">Regional</div>
+                </a>
+            </li>
         @endcan
 
         <li class="menu-item">
@@ -126,31 +121,31 @@
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('zoneMemberPay') ? 'active' :'' }}">
+                <li class="menu-item {{ Request::is('zoneMemberPay') ? 'active' : '' }}">
                     <a href="{{ route('zoneMemberPay.index') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-medal"></i>
                         <div data-i18n="Without menu">Zone Member Pay</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('cityMemberPay') ? 'active' :'' }}">
+                <li class="menu-item {{ Request::is('cityMemberPay') ? 'active' : '' }}">
                     <a href="{{ route('cityMemberPay.index') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-medal"></i>
                         <div data-i18n="Without menu">City Member Pay</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('regionMemberPay') ? 'active' :'' }}">
+                <li class="menu-item {{ Request::is('regionMemberPay') ? 'active' : '' }}">
                     <a href="{{ route('regionMemberPay.index') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-medal"></i>
                         <div data-i18n="Without menu">Region Member Pay</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('abroadMemberPay') ? 'active' :'' }}">
+                <li class="menu-item {{ Request::is('abroadMemberPay') ? 'active' : '' }}">
                     <a href="{{ route('abroadMemberPay.index') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-medal"></i>
                         <div data-i18n="Without menu">Abroad Member Pay</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('honorableMemberPay') ? 'active' :'' }}">
+                <li class="menu-item {{ Request::is('honorableMemberPay') ? 'active' : '' }}">
                     <a href="{{ route('honorableMemberPay.index') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-medal"></i>
                         <div data-i18n="Without menu">Honorable Member Pay</div>
@@ -160,6 +155,66 @@
 
             </ul>
         </li>
+
+
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div data-i18n="Layouts">Organizations</div>
+            </a>
+
+            <ul class="menu-sub">
+                @can('arsii-list')
+                    <li class="menu-item  {{ Request::is('arsii') ? 'active' : '' }}">
+                        <a href="{{ route('arsii.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Arsii</div>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('arsii_lixaa-list')
+                    <li class="menu-item  {{ Request::is('arsii_lixaa') ? 'active' : '' }}">
+                        <a href="{{ route('arsii_lixaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Arsii Lixaa</div>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('baalee-list')
+                    <li class="menu-item  {{ Request::is('baalee') ? 'active' : '' }}">
+                        <a href="{{ route('baalee.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Baalee</div>
+                        </a>
+                    </li>
+                @endcan
+                @can('baalee_bahaa-list')
+                    <li class="menu-item  {{ Request::is('baalee_bahaa') ? 'active' : '' }}">
+                        <a href="{{ route('baalee_bahaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Baalee Bahaa</div>
+                        </a>
+                    </li>
+                @endcan
+
+
+                
+                @can('booranaa-list')
+                    <li class="menu-item  {{ Request::is('booranaa') ? 'active' : '' }}">
+                        <a href="{{ route('booranaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Booranaa</div>
+                        </a>
+                    </li>
+                @endcan
+                {{-- Add more organizations here as needed --}}
+            </ul>
+        </li>
+
+
+
+
+
+
+
+
 
 
 
@@ -174,153 +229,153 @@
 
             <ul class="menu-sub">
                 @can('zone1-list')
-              <li class="menu-item  {{ Request::is('zone1') ? 'active' :'' }}">
-                    <a href="{{ route('zone1.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Arsii</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone1') ? 'active' : '' }}">
+                        <a href="{{ route('zone1.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Arsii</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone2-list')
-                <li class="menu-item  {{ Request::is('zone2') ? 'active' :'' }}">
-                    <a href="{{ route('zone2.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Arsii-Lixaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone2') ? 'active' : '' }}">
+                        <a href="{{ route('zone2.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Arsii-Lixaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone3-list')
-                <li class="menu-item  {{ Request::is('zone3') ? 'active' :'' }}">
-                    <a href="{{ route('zone3.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Baalee</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone3') ? 'active' : '' }}">
+                        <a href="{{ route('zone3.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Baalee</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone4-list')
-                <li class="menu-item  {{ Request::is('zone4') ? 'active' :'' }}">
-                    <a href="{{ route('zone4.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Baalee-Bahaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone4') ? 'active' : '' }}">
+                        <a href="{{ route('zone4.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Baalee-Bahaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone5-list')
-                <li class="menu-item  {{ Request::is('zone5') ? 'active' :'' }}">
-                    <a href="{{ route('zone5.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Booranaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone5') ? 'active' : '' }}">
+                        <a href="{{ route('zone5.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Booranaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone6-list')
-                <li class="menu-item  {{ Request::is('zone6') ? 'active' :'' }}">
-                    <a href="{{ route('zone6.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Bunno- Baddalle</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone6') ? 'active' : '' }}">
+                        <a href="{{ route('zone6.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Bunno- Baddalle</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone7-list')
-                <li class="menu-item  {{ Request::is('zone7') ? 'active' :'' }}">
-                    <a href="{{ route('zone7.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Finfinnee</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone7') ? 'active' : '' }}">
+                        <a href="{{ route('zone7.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Finfinnee</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone8-list')
-                <li class="menu-item  {{ Request::is('zone8') ? 'active' :'' }}">
-                    <a href="{{ route('zone8.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Gujii</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone8') ? 'active' : '' }}">
+                        <a href="{{ route('zone8.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Gujii</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone9-list')
-                <li class="menu-item  {{ Request::is('zone9') ? 'active' :'' }}">
-                    <a href="{{ route('zone9.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Gujii-Lixaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone9') ? 'active' : '' }}">
+                        <a href="{{ route('zone9.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Gujii-Lixaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone10-list')
-                <li class="menu-item  {{ Request::is('zone10') ? 'active' :'' }}">
-                    <a href="{{ route('zone10.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Harargee-Bahaa</div>
+                    <li class="menu-item  {{ Request::is('zone10') ? 'active' : '' }}">
+                        <a href="{{ route('zone10.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Harargee-Bahaa</div>
 
-                    </a>
-                </li>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone11-list')
-                <li class="menu-item  {{ Request::is('zone11') ? 'active' :'' }}">
-                    <a href="{{ route('zone11.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Harargee-Lixaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone11') ? 'active' : '' }}">
+                        <a href="{{ route('zone11.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Harargee-Lixaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone12-list')
-                <li class="menu-item  {{ Request::is('zone12') ? 'active' :'' }}">
-                    <a href="{{ route('zone12.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Horroo-Guduruu-Wallaga</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone12') ? 'active' : '' }}">
+                        <a href="{{ route('zone12.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Horroo-Guduruu-Wallaga</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone13-list')
-                <li class="menu-item  {{ Request::is('zone13') ? 'active' :'' }}">
-                    <a href="{{ route('zone13.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Iluu-Abbaa-Booraa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone13') ? 'active' : '' }}">
+                        <a href="{{ route('zone13.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Iluu-Abbaa-Booraa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone14-list')
-                <li class="menu-item  {{ Request::is('zone14') ? 'active' :'' }}">
-                    <a href="{{ route('zone14.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Jimmaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone14') ? 'active' : '' }}">
+                        <a href="{{ route('zone14.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Jimmaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone15-list')
-                <li class="menu-item  {{ Request::is('zone15') ? 'active' :'' }}">
-                    <a href="{{ route('zone15.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Qeellam-Wallaga</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone15') ? 'active' : '' }}">
+                        <a href="{{ route('zone15.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Qeellam-Wallaga</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone16-list')
-                <li class="menu-item  {{ Request::is('zone16') ? 'active' :'' }}">
-                    <a href="{{ route('zone16.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Shawaa-Bahaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone16') ? 'active' : '' }}">
+                        <a href="{{ route('zone16.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Shawaa-Bahaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone17-list')
-                <li class="menu-item  {{ Request::is('zone17') ? 'active' :'' }}">
-                    <a href="{{ route('zone17.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Shawaa-Kaabaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone17') ? 'active' : '' }}">
+                        <a href="{{ route('zone17.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Shawaa-Kaabaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone18-list')
-                <li class="menu-item  {{ Request::is('zone18') ? 'active' :'' }}">
-                    <a href="{{ route('zone18.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Shawaa-Kibbaaa-Lixaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone18') ? 'active' : '' }}">
+                        <a href="{{ route('zone18.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Shawaa-Kibbaaa-Lixaa</div>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('zone19-list')
-                <li class="menu-item  {{ Request::is('zone19') ? 'active' :'' }}">
-                    <a href="{{ route('zone19.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Shawaa-Lixaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone19') ? 'active' : '' }}">
+                        <a href="{{ route('zone19.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Shawaa-Lixaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone20-list')
-                <li class="menu-item  {{ Request::is('zone20') ? 'active' :'' }}">
-                    <a href="{{ route('zone20.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Wallaga-Bahaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone20') ? 'active' : '' }}">
+                        <a href="{{ route('zone20.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Wallaga-Bahaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('zone21-list')
-                <li class="menu-item  {{ Request::is('zone21') ? 'active' :'' }}">
-                    <a href="{{ route('zone21.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Wallaga-Lixaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('zone21') ? 'active' : '' }}">
+                        <a href="{{ route('zone21.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Wallaga-Lixaa</div>
+                        </a>
+                    </li>
                 @endcan
 
             </ul>
@@ -332,137 +387,137 @@
             </a>
             <ul class="menu-sub">
                 @can('city1-list')
-                <li class="menu-item  {{ Request::is('city1') ? 'active' :'' }}">
-                    <a href="{{ route('city1.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Adaamaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city1') ? 'active' : '' }}">
+                        <a href="{{ route('city1.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Adaamaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city2-list')
-                <li class="menu-item  {{ Request::is('city2') ? 'active' :'' }}">
-                    <a href="{{ route('city2.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Amboo</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city2') ? 'active' : '' }}">
+                        <a href="{{ route('city2.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Amboo</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city3-list')
-                <li class="menu-item  {{ Request::is('city3') ? 'active' :'' }}">
-                    <a href="{{ route('city3.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Asallaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city3') ? 'active' : '' }}">
+                        <a href="{{ route('city3.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Asallaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city4-list')
-                <li class="menu-item  {{ Request::is('city4') ? 'active' :'' }}">
-                    <a href="{{ route('city4.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Baatuu</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city4') ? 'active' : '' }}">
+                        <a href="{{ route('city4.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Baatuu</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city5-list')
-                <li class="menu-item  {{ Request::is('city5') ? 'active' :'' }}">
-                    <a href="{{ route('city5.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Bishooftuu</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city5') ? 'active' : '' }}">
+                        <a href="{{ route('city5.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Bishooftuu</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city6-list')
-                <li class="menu-item  {{ Request::is('city6') ? 'active' :'' }}">
-                    <a href="{{ route('city6.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Buraayyuu</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city6') ? 'active' : '' }}">
+                        <a href="{{ route('city6.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Buraayyuu</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city7-list')
-                <li class="menu-item  {{ Request::is('city7') ? 'active' :'' }}">
-                    <a href="{{ route('city7.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Dukam</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city7') ? 'active' : '' }}">
+                        <a href="{{ route('city7.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Dukam</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city8-list')
-                <li class="menu-item  {{ Request::is('city8') ? 'active' :'' }}">
-                    <a href="{{ route('city8.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Finfinnee</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city8') ? 'active' : '' }}">
+                        <a href="{{ route('city8.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Finfinnee</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city9-list')
-                <li class="menu-item  {{ Request::is('city9') ? 'active' :'' }}">
-                    <a href="{{ route('city9.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Galaan</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city9') ? 'active' : '' }}">
+                        <a href="{{ route('city9.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Galaan</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city10-list')
-                <li class="menu-item  {{ Request::is('city10') ? 'active' :'' }}">
-                    <a href="{{ route('city10.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Hoolotaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city10') ? 'active' : '' }}">
+                        <a href="{{ route('city10.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Hoolotaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city11-list')
-                <li class="menu-item  {{ Request::is('city11') ? 'active' :'' }}">
-                    <a href="{{ route('city11.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Jimmaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city11') ? 'active' : '' }}">
+                        <a href="{{ route('city11.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Jimmaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city12-list')
-                <li class="menu-item  {{ Request::is('city12') ? 'active' :'' }}">
-                    <a href="{{ route('city12.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-L_Xaafoo</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city12') ? 'active' : '' }}">
+                        <a href="{{ route('city12.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-L_Xaafoo</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city13-list')
-                <li class="menu-item  {{ Request::is('city13') ? 'active' :'' }}">
-                    <a href="{{ route('city13.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Mojoo</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city13') ? 'active' : '' }}">
+                        <a href="{{ route('city13.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Mojoo</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city14-list')
-                <li class="menu-item  {{ Request::is('city14') ? 'active' :'' }}">
-                    <a href="{{ route('city14.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Naqamtee</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city14') ? 'active' : '' }}">
+                        <a href="{{ route('city14.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Naqamtee</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city15-list')
-                <li class="menu-item  {{ Request::is('city15') ? 'active' :'' }}">
-                    <a href="{{ route('city15.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Roobee</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city15') ? 'active' : '' }}">
+                        <a href="{{ route('city15.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Roobee</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city16-list')
-                <li class="menu-item  {{ Request::is('city16') ? 'active' :'' }}">
-                    <a href="{{ route('city16.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Shaashaamannee</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city16') ? 'active' : '' }}">
+                        <a href="{{ route('city16.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Shaashaamannee</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city17-list')
-                <li class="menu-item  {{ Request::is('city17') ? 'active' :'' }}">
-                    <a href="{{ route('city17.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Sabbaataa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city17') ? 'active' : '' }}">
+                        <a href="{{ route('city17.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Sabbaataa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city18-list')
-                <li class="menu-item  {{ Request::is('city18') ? 'active' :'' }}">
-                    <a href="{{ route('city18.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Sulultaa</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city18') ? 'active' : '' }}">
+                        <a href="{{ route('city18.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Sulultaa</div>
+                        </a>
+                    </li>
                 @endcan
                 @can('city19-list')
-                <li class="menu-item  {{ Request::is('city19') ? 'active' :'' }}">
-                    <a href="{{ route('city19.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">B-M-Walisoo</div>
-                    </a>
-                </li>
+                    <li class="menu-item  {{ Request::is('city19') ? 'active' : '' }}">
+                        <a href="{{ route('city19.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">B-M-Walisoo</div>
+                        </a>
+                    </li>
                 @endcan
             </ul>
         </li>
@@ -472,34 +527,34 @@
                 <div data-i18n="Layouts">Report</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item  {{ Request::is('zoneMember-index') ? 'active' :'' }}">
+                <li class="menu-item  {{ Request::is('zoneMember-index') ? 'active' : '' }}">
                     <a href="{{ route('zoneMember.index') }}" class="menu-link">
                         <div data-i18n="Without menu">Zone Member</div>
                     </a>
                 </li>
-                <li class="menu-item  {{ Request::is('zoneMemberFee-index') ? 'active' :'' }}">
+                <li class="menu-item  {{ Request::is('zoneMemberFee-index') ? 'active' : '' }}">
                     <a href="{{ route('zoneMemberFee.index') }}" class="menu-link">
                         <div data-i18n="Without menu">Zone Member's Fee</div>
                     </a>
                 </li>
 
-                <li class="menu-item  {{ Request::is('cityMember-index') ? 'active' :'' }}">
+                <li class="menu-item  {{ Request::is('cityMember-index') ? 'active' : '' }}">
                     <a href="{{ route('cityMember.index') }}" class="menu-link">
                         <div data-i18n="Without menu">City Member</div>
                     </a>
                 </li>
-                <li class="menu-item  {{ Request::is('cityMemberFee-index') ? 'active' :'' }}">
+                <li class="menu-item  {{ Request::is('cityMemberFee-index') ? 'active' : '' }}">
                     <a href="{{ route('cityMemberFee.index') }}" class="menu-link">
                         <div data-i18n="Without menu">City Member's Fee</div>
                     </a>
                 </li>
 
-                <li class="menu-item  {{ Request::is('regionMember-index') ? 'active' :'' }}">
+                <li class="menu-item  {{ Request::is('regionMember-index') ? 'active' : '' }}">
                     <a href="{{ route('regionMember.index') }}" class="menu-link">
                         <div data-i18n="Without menu">Regional Member</div>
                     </a>
                 </li>
-                <li class="menu-item  {{ Request::is('regionMemberFee-index') ? 'active' :'' }}">
+                <li class="menu-item  {{ Request::is('regionMemberFee-index') ? 'active' : '' }}">
                     <a href="{{ route('regionMemberFee.index') }}" class="menu-link">
                         <div data-i18n="Without menu">Regional Member's Fee</div>
                     </a>

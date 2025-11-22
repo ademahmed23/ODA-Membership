@@ -24,11 +24,44 @@ class Zone7Controller extends Controller
         $this->middleware('permission:zone7-delete', ['only' => ['destroy']]);
     }
 
-    public function index()
-    {
-        $count = Zone7::count();
+     public function index(Request $request){  
 
-        return view('zone7.index', compact('count'));
+         $zone = 'zone7s';
+    $count = Zone7::count();
+    $name = 'Finfinnee';
+    $export = true;
+    $woreda = $request->woreda;
+
+    // Get distinct woredas
+    $woredas = \DB::table($zone)
+        ->select('woreda')
+        ->distinct()
+        ->orderBy('woreda')
+        ->pluck('woreda');
+
+    // Base query
+    $query = Zone7::query();
+
+    // Filter by woreda if provided
+    if ($woreda) {
+        $query->where('woreda', $woreda);
+    }
+
+    // Use pagination instead of get()
+    $reports = $query->paginate(10); // 10 items per page
+
+    // Add computed fields
+    $reports->getCollection()->transform(function ($item, $key) use ($reports) {
+        $item->row_id = ($reports->currentPage() - 1) * $reports->perPage() + $key + 1; // continuous numbering
+        $item->has_paid = \DB::table('zone_member_pays')
+            ->where('member_id', $item->id)
+            ->where('model', 'zone7')
+            ->whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->exists();
+        return $item;
+    });
+    return view('zone7.index', compact('reports', 'name', 'zone', 'woreda', 'export', 'woredas','count'));
     }
 
     public function create()

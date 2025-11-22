@@ -68,7 +68,11 @@ use App\Http\Controllers\RegionMemberPayController;
 use App\Http\Controllers\HonorableMemberPayController;
 use App\Http\Controllers\Front\NewsController as FrontNewsController;
 use App\Http\Controllers\Front\AnnouncementController as FrontAnnouncementController;
-
+use App\Http\Controllers\Organization\ArsiiController;
+use App\Http\Controllers\Organization\ArsiiLixaaController;
+use App\Http\Controllers\Organization\BaaleeController;
+use App\Http\Controllers\Organization\BaaleeBahaaController;
+use App\Http\Controllers\Organization\BooranaaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -127,7 +131,20 @@ Route::middleware([
     Route::resource('zone19', Zone19Controller::class);
     Route::resource('zone20', Zone20Controller::class);
     Route::resource('zone21', Zone21Controller::class);
-    Route::resource('organization', OrganizationController::class);
+
+    //
+    Route::resource('arsii',ArsiiController::class);
+    Route::resource('arsii_lixaa',ArsiiLixaaController::class);
+    Route::resource('baalee', BaaleeController::class);
+    Route::resource('baalee_bahaa', BaaleeBahaaController::class);
+    Route::resource('booranaa', BooranaaController::class);
+    //
+    Route::Post('arsii/import', [ArsiiController::class, 'import'])->name('arsii.import');
+    Route::Post('arsii_lixaa/import', [ArsiiLixaaController::class, 'import'])->name('arsii_lixaa.import');
+    Route::Post('baalee/import', [BaaleeController::class, 'import'])->name('baalee.import');
+    Route::Post('baalee_bahaa/import', [BaaleeBahaaController::class, 'import'])->name('baalee_bahaa.import');
+    Route::Post('booranaa/import', [BooranaaController::class, 'import'])->name('booranaa.import');
+    
     // import
     Route::post('zone1/import', [Zone1Controller::class, 'import'])->name('zone1.import');
     Route::post('zone2/import', [Zone2Controller::class, 'import'])->name('zone2.import');
@@ -276,6 +293,10 @@ Route::middleware([
     Route::get('honorable-pay/{honorable}', [HonorableController::class, 'pay'])->name('honorable.pay');
     Route::get('abroad-pay/{abroad}', [AbroadController::class, 'pay'])->name('abroad.pay');
     Route::get('regional-pay/{regional}', [RegionalController::class, 'pay'])->name('regional.pay');
+    Route::get('arsii-pay/{arsii}', [RegionalController::class, 'pay'])->name('arsii.pay');
+    Route::get('arsii_lixaa-pay/{arsii_lixaa}', [RegionalController::class, 'pay'])->name('arsii_lixaa.pay');
+    Route::get('baalee-pay/{baalee}', [RegionalController::class, 'pay'])->name('baalee.pay');
+    Route::get('booranaa-pay/{booranaa}', [RegionalController::class, 'pay'])->name('booranaa.pay');
 
     //Zone Member Pay Report
     Route::post('zoneMemberFee-report', [ZoneMemberFeeReport::class, 'index'])->name('zoneMemberFee.report');

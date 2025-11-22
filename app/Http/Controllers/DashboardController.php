@@ -61,6 +61,7 @@ $woreda = \DB::table('woreda')->count();
         'zone20s' => 'W/Bahaa',
         'zone21s' => 'W/Lixaa'
     ];
+    
 
       $zoneCounts = [];
 
