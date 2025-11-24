@@ -1,4 +1,4 @@
-<x-app-layout>
+@extends('layouts.old.app')
 
     {{-- <div class="container-xxl flex-grow-1 container-p-y">
         <!-- Layout Demo -->
@@ -430,4 +430,4 @@
     </div>
 
 
-</x-app-layout>
+

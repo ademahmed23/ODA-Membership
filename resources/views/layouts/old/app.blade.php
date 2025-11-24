@@ -77,7 +77,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <main>
-                        {{ $slot }}
+                        {{-- {{ $slot }} --}}
                     </main>
                 </div>
             </div>

@@ -72,6 +72,49 @@ $woreda = \DB::table('woreda')->count();
         ];
     }
 
+
+
+
+
+
+ $orgs = [
+        'arsii' => 'Arsii',
+        'arsii_lixaa' => 'A/Lixaa',
+        'baalee' => 'Baalee',
+        'b_bahaa' => 'B/Bahaa',
+        'booranaa' => 'Booranaa',
+        'b_baddalle' => 'B/Baddalle',
+        'finfinnee' => 'Finfinnee',
+        'gujii' => 'Gujii',
+        'g_lixaa' => 'G/Lixaa',
+        'h_bahaa' => 'H/Bahaa',
+        'h_lixaa' => 'H/Lixaa',
+        'h_g_wallaga' => 'H/G/Wallaga',
+        'i_a_booraa' => 'I/A/Booraa',
+        'jimmaa' => 'Jimmaa',
+        'q_wallaga' => 'Q/Wallaga',
+        'sh_bahaa' => 'Sh/Bahaa',
+        'sh_kaabaa' => 'Sh/Kaabaa',
+        'sh_k_lixaa' => 'Sh/K/Lixaa',
+        'sh_lixaa' => 'Sh/Lixaa',
+        'wahaa' => 'W/Bahaa',
+        'w_lixaa' => 'W/Lixaa'
+    ];
+
+   $orgacount = [];
+
+    foreach ($orgs as $table => $name) {
+        $orgacount[] = [
+            'ahmed' => $name,
+            'adem' => \DB::table($table)->count()
+        ];
+    }
+
+
+
+
+
+
 $zonesposition =[
           'zone1s','zone2s','zone3s','zone4s','zone5s',
         'zone6s','zone7s','zone8s','zone9s','zone10s',
@@ -114,7 +157,7 @@ $zoneCounter = \DB::table('w_officers')
 
 
 
-        return view('dashboard',  compact('news', 'announcement', 'members','count','all','woreda','allcity','roles','officers','zoneCounts','positionCounts','zonesposition','zoneCounter'),
+        return view('dashboard',  compact('news', 'announcement', 'members','count','all','woreda','allcity','roles','officers','zoneCounts','orgacount','positionCounts','zonesposition','zoneCounter'),
         ['positionCounts' => $positionCounts]);
     }
 }

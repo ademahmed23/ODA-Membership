@@ -1,7 +1,4 @@
-   @php
-
-       $zone_all = \App\Models\All_zone::all();
-   @endphp
+  
    @extends('layouts.app')
 
    @section('content')

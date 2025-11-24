@@ -2,33 +2,33 @@
 
 @section('content')
 
-{{-- <x-app-layout> --}}
-@section('title','Roles')
+    {{-- <x-app-layout> --}}
+@section('title', 'Roles')
 <div>
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-               
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                           <div class="col-lg-12 col-md-12 col-12 mb-4">
-                               <div class="card">
-                                   <div class="card-body">
-                                       <div class="card-title d-flex align-items-start justify-content-between">
-                                           <div class="avatar flex-shrink-0">
-                                               {{-- insert icons dynamically from variable --}}
-                                               <i class="bx bxs-group" style="font-size: 2.5em;color:green;"></i>
-                                               {{-- <i class="bx bxs-user-circle"></i> --}}
-                                           </div>
-                                       </div>
-                                       <span>Roles</span>
-                                       <h3 class="card-title text-nowrap mb-1">{{ $roles->total() }}</h3>
-                                   </div>
+                    <div class="col-lg-12 col-md-12 col-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <div class="avatar flex-shrink-0">
+                                        {{-- insert icons dynamically from variable --}}
+                                        <i class="bx bxs-group" style="font-size: 2.5em;color:green;"></i>
+                                        {{-- <i class="bx bxs-user-circle"></i> --}}
+                                    </div>
+                                </div>
+                                <span>Roles</span>
+                                <h3 class="card-title text-nowrap mb-1">{{ $roles->total() }}</h3>
+                            </div>
 
-                               </div>
+                        </div>
 
-                           </div>
+                    </div>
 
-                       </div>
+                </div>
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
@@ -39,7 +39,8 @@
                             <div class="row">
                                 <div class="col-12 text-right" style="text-align: right;">
                                     @can('role-create')
-                                    <a href="#" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Roles</a>
+                                        <a href="#" class="btn btn-sm btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">Add Roles</a>
                                     @endcan
 
 
@@ -66,38 +67,33 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($roles as $key => $role)
+                                            <tr>
+                                                <td>{{ ++$i }}</td>
 
-
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-
-                                            <td>{{ $role->name }}</td>
+                                                <td>{{ $role->name }}</td>
 
 
 
-                                            <td class="td-actions text-right" style="width:75px;overflow: hidden;">
+                                                <td class="td-actions text-right" style="width:75px;overflow: hidden;">
 
-                                                <div class="flex items-center space-x-4 text-sm">
-                                                    @can('role-edit')
+                                                    <div class="flex items-center space-x-4 text-sm">
+                                                        @can('role-edit')
+                                                            <a class="btn btn-primary"
+                                                                href="{{ route('roles.edit', $role->id) }}">Edit</a>
+                                                        @endcan
 
-                                                    <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                                                        @can('role-delete')
+                                                            {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
 
-                                                    @endcan
+                                                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 
-                                                    @can('role-delete')
+                                                            {!! Form::close() !!}
+                                                        @endcan
 
-                                                    {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+                                                    </div>
 
-                                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-
-                                                    {!! Form::close() !!}
-
-                                                    @endcan
-
-                                                </div>
-
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
                                         @endforeach
 
                                     </tbody>

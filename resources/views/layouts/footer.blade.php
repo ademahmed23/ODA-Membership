@@ -6,7 +6,7 @@
           document.write(new Date().getFullYear());
         </script>
         , made  by
-        <a href="https://greentechet.com" target="_blank" class="footer-link fw-bolder">Adem as Coworker</a>
+        <a href="https://github.com/ademahmed23" target="_blank" class="footer-link fw-bolder">Adem as Developer</a>
       </div>
 
     </div>

@@ -204,6 +204,30 @@
                         </a>
                     </li>
                 @endcan
+
+                 @can('buunnoo-list')
+                    <li class="menu-item  {{ Request::is('buunnoo') ? 'active' : '' }}">
+                        <a href="{{ route('buunnoo.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Buunnoo Beddellee</div>
+                        </a>
+                    </li>
+                @endcan
+
+                  @can('finfinnee-list')
+                    <li class="menu-item  {{ Request::is('finfinnee') ? 'active' : '' }}">
+                        <a href="{{ route('finfinnee.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Finfinnee</div>
+                        </a>
+                    </li>
+                @endcan
+
+                 @can('gujii-list')
+                    <li class="menu-item  {{ Request::is('gujii') ? 'active' : '' }}">
+                        <a href="{{ route('gujii.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Gujii</div>
+                        </a>
+                    </li>
+                @endcan
                 {{-- Add more organizations here as needed --}}
             </ul>
         </li>
