@@ -228,6 +228,7 @@
                         </a>
                     </li>
                 @endcan
+                
 
 
 
@@ -269,6 +270,15 @@
                     <li class="menu-item  {{ Request::is('iluu') ? 'active' : '' }}">
                         <a href="{{ route('iluu.index') }}" class="menu-link">
                             <div data-i18n="Without menu">I/A/Booraa</div>
+                        </a>
+                    </li>
+                @endcan
+
+
+                @can('jimmaa-list')
+                    <li class="menu-item  {{ Request::is('jimmaa') ? 'active' : '' }}">
+                        <a href="{{ route('jimmaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Jimmaa</div>
                         </a>
                     </li>
                 @endcan
