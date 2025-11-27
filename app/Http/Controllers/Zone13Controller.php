@@ -28,7 +28,7 @@ class Zone13Controller extends Controller
     {
         $count = Zone13::count();
 
-        return view('zone13.index', compact('count'));
+        return view('zones.zone13.index', compact('count'));
     }
 
     public function create()
@@ -57,7 +57,7 @@ class Zone13Controller extends Controller
 
         $jsonOptions = json_encode($options);
 
-        return view('zone13.create');
+        return view('zones.zone13.create');
     }
 
     public function store(Request $request)
@@ -122,7 +122,7 @@ class Zone13Controller extends Controller
     {
         $zone13 = Zone13::findOrFail($id);
 
-        return view('zone13.edit', compact('zone13'));
+        return view('zones.zone13.edit', compact('zone13'));
     }
 
     public function update(Request $request, $id)
@@ -200,6 +200,6 @@ class Zone13Controller extends Controller
     {
         $member = Zone13::findOrFail($id);
         $model = "zone13";
-        return view('zoneMemberPay.create', compact('member', 'model'));
+        return view('zones.zoneMemberPay.create', compact('member', 'model'));
     }
 }

@@ -28,12 +28,12 @@ class City18Controller extends Controller
     {
         $count = City18::count();
 
-        return view('city18.index', compact('count'));
+        return view('cities.city18.index', compact('count'));
     }
 
     public function create()
     {
-        return view('city18.create');
+        return view('cities.city18.create');
     }
 
     public function store(Request $request)
@@ -98,7 +98,7 @@ class City18Controller extends Controller
     {
         $city18 = City18::findOrFail($id);
 
-        return view('city18.edit', compact('city18'));
+        return view('cities.city18.edit', compact('city18'));
     }
 
     public function update(Request $request, $id)
@@ -170,6 +170,6 @@ class City18Controller extends Controller
     {
         $member = city18::findOrFail($id);
         $model = "city18";
-        return view('cityMemberPay.create', compact('member', 'model'));
+        return view('cities.cityMemberPay.create', compact('member', 'model'));
     }
 }

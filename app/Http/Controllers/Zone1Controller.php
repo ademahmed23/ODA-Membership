@@ -66,7 +66,7 @@ public function index(Request $request)
         return $item;   
     });
 
-    return view('zone1.index', compact('reports', 'name', 'zone', 'woreda', 'export', 'woredas', 'count'));
+    return view('zones.zone1.index', compact('reports', 'name', 'zone', 'woreda', 'export', 'woredas', 'count'));
 }
 
 
@@ -112,7 +112,7 @@ public function index(Request $request)
 
         $jsonOptions = json_encode($options);
 
-        return view('zone1.create', compact('jsonOptions'));
+        return view('zones.zone1.create', compact('jsonOptions'));
     }
 
     public function store(Request $request)
@@ -178,7 +178,7 @@ public function index(Request $request)
     {
         $zone1 = Zone1::findOrFail($id);
 
-        return view('zone1.edit', compact('zone1'));
+        return view('zones.zone1.edit', compact('zone1'));
     }
 
     public function update(Request $request, $id)
@@ -258,6 +258,6 @@ public function index(Request $request)
     {
         $member = Zone1::findOrFail($id);
         $model = "zone1";
-        return view('zoneMemberPay.create', compact('member', 'model'));
+        return view('zones.zoneMemberPay.create', compact('member', 'model'));
     }
 }

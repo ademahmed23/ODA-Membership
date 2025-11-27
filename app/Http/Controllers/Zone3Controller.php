@@ -62,12 +62,11 @@ class Zone3Controller extends Controller
         return $item;
     });
 
-    return view('zone3.index', compact('reports', 'name', 'zone', 'woreda', 'export', 'woredas','count'));
+    return view('zones.zone3.index', compact('reports', 'name', 'zone', 'woreda', 'export', 'woredas','count'));
     }
 
     public function create()
-    {
-
+    |
         $woredas = [
             'Agaarfaa',
             'Barbaree',
@@ -92,7 +91,7 @@ class Zone3Controller extends Controller
 
         $jsonOptions = json_encode($options);
 
-        return view('zone3.create', compact('jsonOptions'));
+        return view('zones.zone3.create', compact('jsonOptions'));
     }
 
     public function store(Request $request)
@@ -157,7 +156,7 @@ class Zone3Controller extends Controller
     {
         $zone3 = Zone3::findOrFail($id);
 
-        return view('zone3.edit', compact('zone3'));
+        return view('zones.zone3.edit', compact('zone3'));
     }
 
     public function update(Request $request, $id)
@@ -235,6 +234,6 @@ class Zone3Controller extends Controller
     {
         $member = Zone3::findOrFail($id);
         $model = "zone3";
-        return view('zoneMemberPay.create', compact('member', 'model'));
+        return view('zones.zoneMemberPay.create', compact('member', 'model'));
     }
 }

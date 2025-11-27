@@ -469,7 +469,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         var options = {
             chart: {
-                type: 'bar',
+                type: 'area',
                 height: 300
             },
             stroke: {

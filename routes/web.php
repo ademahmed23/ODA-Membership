@@ -76,6 +76,13 @@ use App\Http\Controllers\Organization\BooranaaController;
 use App\Http\Controllers\Organization\BuunnooBeddelleeController;
 use App\Http\Controllers\Organization\FinfinneeController;
 use App\Http\Controllers\Organization\GujiiController;
+use App\Http\Controllers\Organization\GujiiLixaaController;
+use App\Http\Controllers\Organization\HarargeeBahaaController;
+use App\Http\Controllers\Organization\HarargeeLixaaController;
+use App\Http\Controllers\Organization\HoorrooGWallaggaaController;
+use App\Http\Controllers\Organization\IluuAbbaaBooraaController;
+use App\Http\Controllers\Organization\JimmaaController;
+
 
 
 
@@ -148,6 +155,12 @@ Route::middleware([
     Route::resource('buunnoo', BuunnooBeddelleeController::class);
     Route::resource('finfinnee', FinfinneeController::class);
     Route::resource('gujii', GujiiController::class);
+    Route::resource('gujii_lixaa', GujiiLixaaController::class);
+    Route::resource('h_bahaa', HarargeeBahaaController::class);
+    Route::resource('h_lixaa', HarargeeLixaaController::class);
+    Route::resource('hoorroo', HoorrooGWallaggaaController::class);
+    Route::resource('iluu', IluuAbbaaBooraaController::class);
+    Route::resource('jimmaa', JimmaaController::class);
     //
     Route::Post('arsii/import', [ArsiiController::class, 'import'])->name('arsii.import');
     Route::Post('arsii_lixaa/import', [ArsiiLixaaController::class, 'import'])->name('arsii_lixaa.import');
@@ -157,6 +170,12 @@ Route::middleware([
     Route::Post('buunnoo/import', [BuunnooBeddelleeController::class, 'import'])->name('buunnoo.import');
     Route::Post('finfinnee/import', [FinfinneeController::class, 'import'])->name('finfinnee.import');
     Route::Post('gujii/import', [GujiiController::class, 'import'])->name('gujii.import');
+    Route::Post('gujii_lixaa/import', [GujiiLixaaController::class, 'import'])->name('gujii_lixaa.import');
+    Route::Post('h_bahaa/import', [HarargeeBahaaController::class, 'import'])->name('h_bahaa.import');
+    Route::Post('h_lixaa/import', [HarargeeLixaaController::class, 'import'])->name('h_lixaa.import');
+    Route::Post('hoorroo/import', [HoorrooGWallaggaaController::class, 'import'])->name('hoorroo.import');
+    Route::Post('iluu/import', [IluuAbbaaBooraaController::class, 'import'])->name('iluu.import');
+    Route::Post('jimmaa/import', [JimmaaController::class, 'import'])->name('jimmaa.import');
     
     // import
     Route::post('zone1/import', [Zone1Controller::class, 'import'])->name('zone1.import');
@@ -312,6 +331,12 @@ Route::middleware([
     Route::get('booranaa-pay/{booranaa}', [RegionalController::class, 'pay'])->name('booranaa.pay');
     Route::get('finfinnee-pay/{finfinnee}', [RegionalController::class, 'pay'])->name('finfinnee.pay');
     Route::get('gujii-pay/{gujii}', [RegionalController::class, 'pay'])->name('gujii.pay');
+    Route::get('gujii_lixaa-pay/{gujii_lixaa}', [RegionalController::class, 'pay'])->name('gujii_lixaa.pay');
+    Route::get('h_bahaa-pay/{h_bahaa}', [HarargeeBahaaController::class, 'pay'])->name('h_bahaa.pay');
+    Route::get('h_lixaa-pay/{h_lixaa}', [HarargeeLixaaController::class, 'pay'])->name('h_lixaa.pay');
+    Route::get('hoorroo-pay/{hoorroo}', [HoorrooGWallaggaaController::class, 'pay'])->name('hoorroo.pay');
+    Route::get('iluu-pay/{iluu}', [IluuAbbaaBooraaController::class, 'pay'])->name('iluu.pay');
+    Route::get('jimmaa-pay/{jimmaa}', [JimmaaController::class, 'pay'])->name('jimmaa.pay');
     
 
     //Zone Member Pay Report

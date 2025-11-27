@@ -228,6 +228,50 @@
                         </a>
                     </li>
                 @endcan
+
+
+
+                
+                
+                @can('gujii_lixaa-list')
+                    <li class="menu-item  {{ Request::is('gujii_lixaa') ? 'active' : '' }}">
+                        <a href="{{ route('gujii_lixaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Gujii Lixaa</div>
+                        </a>
+                    </li>
+                @endcan
+                 @can('h_bahaa-list')
+                    <li class="menu-item  {{ Request::is('h_bahaa') ? 'active' : '' }}">
+                        <a href="{{ route('h_bahaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Harargee Bahaa</div>
+                        </a>
+                    </li>
+                @endcan
+                 @can('h_lixaa-list')
+                    <li class="menu-item  {{ Request::is('h_lixaa') ? 'active' : '' }}">
+                        <a href="{{ route('h_lixaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Harargee Lixaa</div>
+                        </a>
+                    </li>
+                @endcan
+
+
+                @can('hoorroo-list')
+                    <li class="menu-item  {{ Request::is('hoorroo') ? 'active' : '' }}">
+                        <a href="{{ route('hoorroo.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">H/G/Wallaggaa</div>
+                        </a>
+                    </li>
+                @endcan
+
+
+                 @can('iluu-list')
+                    <li class="menu-item  {{ Request::is('iluu') ? 'active' : '' }}">
+                        <a href="{{ route('iluu.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">I/A/Booraa</div>
+                        </a>
+                    </li>
+                @endcan
                 {{-- Add more organizations here as needed --}}
             </ul>
         </li>
