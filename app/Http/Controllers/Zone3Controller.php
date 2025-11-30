@@ -66,7 +66,7 @@ class Zone3Controller extends Controller
     }
 
     public function create()
-    |
+    {
         $woredas = [
             'Agaarfaa',
             'Barbaree',

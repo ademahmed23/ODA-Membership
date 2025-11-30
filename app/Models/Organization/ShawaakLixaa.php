@@ -25,7 +25,7 @@ class ShawaakLixaa extends Model
         'email',
         'payment_period',
         'member_started',
-        'paymemt',
+        'payment',
         
     ];
 

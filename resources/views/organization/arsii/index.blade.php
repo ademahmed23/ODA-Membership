@@ -86,7 +86,6 @@
     </tbody>
 </table>
 
-{!! $reports->links() !!}
 
 <p class="text-muted">Select a woreda to see members.</p>
 

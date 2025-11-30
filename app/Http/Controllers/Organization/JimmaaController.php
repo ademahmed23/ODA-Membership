@@ -112,7 +112,7 @@ class JimmaaController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:b_badelle',
+            'email' => 'nullable|email|unique:jimmaa',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',

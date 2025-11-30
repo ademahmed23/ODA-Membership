@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\Organization;
 
-use App\Models\Organization\Booranaa;
+use App\Models\Organization\ShawaaLixaa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
-use App\Imports\Organization\BooranaaImport;
+use App\Imports\Organization\ShawaaLixaaImport;
 
-class BooranaaController extends Controller
+class ShawaaLixaaController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
 
-        $this->middleware('permission:booranaa-list|booranaa-create|booranaa-edit|booranaa-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:booranaa-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:booranaa-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:booranaa-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:sh_lixaa-list|sh_lixaa-create|sh_lixaa-edit|sh_lixaa-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:sh_lixaa-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:sh_lixaa-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:sh_lixaa-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
-        $zone = 'booranaa';
-        $count = Booranaa::count();
-        $name = 'Booranaa';
+        $zone = 'sh_lixaa';
+        $count = ShawaaLixaa::count();
+        $name = 'Shawaa Lixaa';
         $export = true;
         $woreda = $request->woreda;
 
@@ -35,7 +35,7 @@ class BooranaaController extends Controller
             ->orderBy('organization_name', 'ASC')
             ->pluck('woreda');
 
-        $query = Booranaa::query();
+        $query = ShawaaLixaa::query();
 
         if ($woreda) {
             $query->where('woreda', $woreda);
@@ -47,14 +47,14 @@ class BooranaaController extends Controller
             $item->row_id = ($reports->currentPage() - 1) * $reports->perPage() + $key + 1;
             $item->has_paid = \DB::table('zone_member_pays')
                 ->where('member_id', $item->id)
-                ->where('model', 'booranaa')
+                ->where('model', 'sh_lixaa')
                 ->whereMonth('date', now()->month)
                 ->whereYear('date', now()->year)
                 ->exists();
             return $item;
         });
 
-        return view('organization.booranaa.index', compact('reports','count','name','export','woredas','woreda','zone'));
+        return view('organization.sh_lixaa.index', compact('reports','count','name','export','woredas','woreda','zone'));
     }
 
     public function create()
@@ -76,7 +76,7 @@ class BooranaaController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.booranaa.create', compact('jsonOptions','joption'));
+        return view('organization.sh_lixaa.create', compact('jsonOptions','joption'));
     }
 
     public function store(Request $request)
@@ -103,7 +103,7 @@ class BooranaaController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:booranaa',
+            'email' => 'nullable|email|unique:sh_lixaa',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -112,14 +112,14 @@ class BooranaaController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        Booranaa::create($validated);
+        ShawaaLixaa::create($validated);
 
-        return redirect()->route('booranaa.index')->with('success','Booranaa Member Created Successfully');
+        return redirect()->route('sh_lixaa.index')->with('success','sh_lixaa Member Created Successfully');
     }
 
     public function edit($id)
     {
-        $booranaa = Booranaa::findOrFail($id);
+        $sh_lixaa = ShawaaLixaa::findOrFail($id);
 
         $woredas = [
             'Teltele', 'Dire', 'Moyale', 'Dillo', 'Yabello', 'Arero', 'Magaalaa', 'Bule', 'Other'
@@ -137,15 +137,15 @@ class BooranaaController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.booranaa.edit', compact('booranaa','jsonOptions','joption'));
+        return view('organization.sh_lixaa.edit', compact('sh_lixaa','jsonOptions','joption'));
     }
 
     public function update(Request $request, $id)
     {
-        $booranaa = Booranaa::findOrFail($id);
+        $sh_lixaa = ShawaaLixaa::findOrFail($id);
 
-        $last_thumb = $booranaa->image;
-        $documentname = $booranaa->document;
+        $last_thumb = $sh_lixaa->image;
+        $documentname = $sh_lixaa->document;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -166,7 +166,7 @@ class BooranaaController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:booranaa',
+            'email' => 'nullable|email|unique:sh_lixaa',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -175,17 +175,17 @@ class BooranaaController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        $booranaa->update($validated);
+        $sh_lixaa->update($validated);
 
-        return redirect()->route('booranaa.index')->with('update','Booranaa Member Updated Successfully');
+        return redirect()->route('sh_lixaa.index')->with('update','sh_lixaa Member Updated Successfully');
     }
 
     public function destroy($id)
     {
-        $booranaa = Booranaa::findOrFail($id);
-        $booranaa->delete();
+        $sh_lixaa = ShawaaLixaa::findOrFail($id);
+        $sh_lixaa->delete();
 
-        return redirect()->route('booranaa.index')->with('delete','Booranaa Member Deleted Successfully');
+        return redirect()->route('sh_lixaa.index')->with('delete','sh_lixaa Member Deleted Successfully');
     }
 
     public function import(Request $request)
@@ -195,10 +195,10 @@ class BooranaaController extends Controller
         ]);
 
         try {
-            $maxId = Booranaa::max('id');
-            Excel::import(new BooranaaImport($maxId), $request->file('file'));
+            $maxId = ShawaaLixaa::max('id');
+            Excel::import(new ShawaaLixaaImport($maxId), $request->file('file'));
 
-            return redirect()->route('booranaa.index')->with('success','Booranaa Imported Successfully');
+            return redirect()->route('sh_lixaa.index')->with('success','sh_lixaa Imported Successfully');
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -206,9 +206,9 @@ class BooranaaController extends Controller
 
     public function pay($id)
     {
-        $member = Booranaa::findOrFail($id);
-        $model = "booranaa";
+        $member = ShawaaLixaa::findOrFail($id);
+        $model = "sh_lixaa";
 
-        return view('organization.booranaa.create', compact('member', 'model'));
+        return view('organization.sh_lixaa.create', compact('member', 'model'));
     }
 }

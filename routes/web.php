@@ -82,6 +82,18 @@ use App\Http\Controllers\Organization\HarargeeLixaaController;
 use App\Http\Controllers\Organization\HoorrooGWallaggaaController;
 use App\Http\Controllers\Organization\IluuAbbaaBooraaController;
 use App\Http\Controllers\Organization\JimmaaController;
+use App\Http\Controllers\Organization\QellamController;
+use App\Http\Controllers\Organization\ShawaaBahaaController;
+use App\Http\Controllers\Organization\ShawaakibbaLixaaController;
+use App\Http\Controllers\Organization\ShawaaKaabaaController;
+use App\Http\Controllers\Organization\ShawaaLixaaController;
+use App\Http\Controllers\Organization\WallaggaBahaaController;
+use App\Http\Controllers\Organization\WallaggaLixaaController;
+use App\Http\Controllers\Dashboard2Controller;
+use App\Http\Controllers\ProjectController;
+
+
+
 
 
 
@@ -122,6 +134,7 @@ Route::middleware([
     Route::get('logout', [ProfileController::class, 'logout'])->name('logout');
     Route::resource('news', NewsController::class);
     Route::resource('announcement', AnnouncementController::class);
+    Route::resource('dashboard2', Dashboard2Controller::class);
     // zones
     Route::resource('zone1', Zone1Controller::class);
     Route::resource('zone2', Zone2Controller::class);
@@ -161,6 +174,16 @@ Route::middleware([
     Route::resource('hoorroo', HoorrooGWallaggaaController::class);
     Route::resource('iluu', IluuAbbaaBooraaController::class);
     Route::resource('jimmaa', JimmaaController::class);
+    Route::resource('qeellam', QellamController::class);
+    Route::resource('sh_bahaa', ShawaaBahaaController::class);
+    Route::resource('sh_kaabaa',ShawaaKaabaaController::class);
+    Route::resource('sh_k_lixaa', ShawaakibbaLixaaController::class);
+    Route::resource('sh_lixaa', ShawaaLixaaController::class);
+    Route::resource('w_bahaa', WallaggaBahaaController::class);
+    Route::resource('w_lixaa', WallaggaLixaaController::class);
+    Route::resource('project', ProjectController::class);
+    //
+
     //
     Route::Post('arsii/import', [ArsiiController::class, 'import'])->name('arsii.import');
     Route::Post('arsii_lixaa/import', [ArsiiLixaaController::class, 'import'])->name('arsii_lixaa.import');
@@ -176,7 +199,13 @@ Route::middleware([
     Route::Post('hoorroo/import', [HoorrooGWallaggaaController::class, 'import'])->name('hoorroo.import');
     Route::Post('iluu/import', [IluuAbbaaBooraaController::class, 'import'])->name('iluu.import');
     Route::Post('jimmaa/import', [JimmaaController::class, 'import'])->name('jimmaa.import');
-    
+    Route::Post('qeellam/import', [QellamController::class, 'import'])->name('qeellam.import');
+    Route::Post('sh_bahaa/import', [ShawaaBahaaController::class, 'import'])->name('sh_bahaa.import');
+    Route::Post('sh_kaabaa/import', [ShawaaKaabaaController::class, 'import'])->name('sh_kaabaa.import');
+    Route::Post('sh_k_lixaa/import', [ShawaakibbaLixaaController::class, 'import'])->name('sh_k_lixaa.import');  
+    Route::Post('sh_lixaa/import', [ShawaaLixaaController::class, 'import'])->name('sh_lixaa.import');
+    Route::Post('w_bahaa/import', [WallaggaBahaaController::class, 'import'])->name('w_bahaa.import');
+    Route::Post('w_lixaa/import', [WallaggaLixaaController::class, 'import'])->name('w_lixaa.import');
     // import
     Route::post('zone1/import', [Zone1Controller::class, 'import'])->name('zone1.import');
     Route::post('zone2/import', [Zone2Controller::class, 'import'])->name('zone2.import');
@@ -256,7 +285,12 @@ Route::middleware([
     // report
     // Route::get('member-report', MembersReport::class)->name('member.report');
     Route::post('zoneMember-report', [ZoneMemberReport::class, 'index'])->name('zoneMember.report');
+    Route::post('projects-report', [ZoneMemberReport::class, 'index'])->name('zoneMember.report');
+
     Route::get('fetchZone/{zone}', [ZoneMemberReport::class, 'fetch'])->name('fetchZone');
+    // Route::get('fetchWoreda/{zone}', [ProjectController::class, 'fetchWoreda'])->name('fetchWoreda');
+    Route::get('/fetch-woreda/{zone}', [ProjectController::class, 'fetchWoreda']);
+
     Route::get('zoneMember-index', [ZoneMemberReport::class, 'first'])->name('zoneMember.index');
     Route::get('zoneMember-export/{zone}/{woreda}', [ZoneMemberReport::class, 'export'])->name('zoneMember.export');
     //report for city
@@ -328,7 +362,9 @@ Route::middleware([
     Route::get('arsii-pay/{arsii}', [RegionalController::class, 'pay'])->name('arsii.pay');
     Route::get('arsii_lixaa-pay/{arsii_lixaa}', [RegionalController::class, 'pay'])->name('arsii_lixaa.pay');
     Route::get('baalee-pay/{baalee}', [RegionalController::class, 'pay'])->name('baalee.pay');
+    Route::get('baalee_bahaa-pay/{baalee_bahaa}', [RegionalController::class, 'pay'])->name('baalee_bahaa.pay');
     Route::get('booranaa-pay/{booranaa}', [RegionalController::class, 'pay'])->name('booranaa.pay');
+    Route::get('buunnoo-pay/{buunnoo}', [RegionalController::class, 'pay'])->name('buunnoo.pay');
     Route::get('finfinnee-pay/{finfinnee}', [RegionalController::class, 'pay'])->name('finfinnee.pay');
     Route::get('gujii-pay/{gujii}', [RegionalController::class, 'pay'])->name('gujii.pay');
     Route::get('gujii_lixaa-pay/{gujii_lixaa}', [RegionalController::class, 'pay'])->name('gujii_lixaa.pay');
@@ -337,6 +373,13 @@ Route::middleware([
     Route::get('hoorroo-pay/{hoorroo}', [HoorrooGWallaggaaController::class, 'pay'])->name('hoorroo.pay');
     Route::get('iluu-pay/{iluu}', [IluuAbbaaBooraaController::class, 'pay'])->name('iluu.pay');
     Route::get('jimmaa-pay/{jimmaa}', [JimmaaController::class, 'pay'])->name('jimmaa.pay');
+    Route::get('qeellam-pay/{qeellam}', [QellamController::class, 'pay'])->name('qeellam.pay');
+    Route::get('sh_bahaa-pay/{sh_bahaa}', [ShawaaBahaaController::class, 'pay'])->name('sh_bahaa.pay');
+    Route::get('sh_kaabaa-pay/{sh_kaabaa}', [ShawaaKaabaaController::class, 'pay'])->name('sh_kaabaa.pay');
+    Route::get('sh_k_lixaa-pay/{sh_k_lixaa}', [ShawaakibbaLixaaController::class, 'pay'])->name('sh_k_lixaa.pay');
+    Route::get('sh_lixaa-pay/{sh_lixaa}', [ShawaaLixaaController::class, 'pay'])->name('sh_lixaa.pay');
+    Route::get('w_bahaa-pay/{w_bahaa}', [WallaggaBahaaController::class, 'pay'])->name('w_bahaa.pay');
+    Route::get('w_lixaa-pay/{w_lixaa}', [WallaggaLixaaController::class, 'pay'])->name('w_lixaa.pay');
     
 
     //Zone Member Pay Report

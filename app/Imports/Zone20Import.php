@@ -27,19 +27,21 @@ class Zone20Import implements ToCollection
             if ($row[0] != null) {
                 try {
                     Zone20::create([
-                        'id' => $this->id,
-                        'first_name' => $row[0],
-                        'middle_name' => $row[1],
-                        'last_name' => $row[2],
-                        'gender' => $row[3],
-                        'age' => $row[4],
-                        'address' => $row[5],
-                        'contact_number' => $row[6],
-                        'woreda' => $row[7],
-                        'email' => $row[8],
-                        'position' => $row[9],
-                        'membership_type' => $row[10],
-                        'membership_fee' => $row[11],
+                     'id' => $this->id,
+                        'member_id' => $row[0],
+                        'first_name' => $row[1],
+                        'middle_name' => $row[2],
+                        'last_name' => $row[3],
+                        'gender' => $row[4],
+                        'age' => $row[5],
+                        'education_level' =>$row[6],
+                        'address' => $row[7],
+                        'contact_number' => $row[8],
+                        'woreda' => $row[9],
+                        'email' => $row[10],
+                        'position' => $row[11],
+                        'membership_type' => $row[12],
+                        'membership_fee' => $row[13],
                     ]);
                 } catch (\Exception $e) {
                     $error = 'Please check your excel file';

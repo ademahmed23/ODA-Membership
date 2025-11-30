@@ -104,7 +104,6 @@
             @endforeach
         </tbody>
     </table>
-                                {!! $reports->links() !!}
     {{-- @else --}}
         <p class="text-muted">Select a woreda to see members.</p>
     {{-- @endif --}}

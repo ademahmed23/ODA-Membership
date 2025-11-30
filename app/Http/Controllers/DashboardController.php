@@ -158,6 +158,11 @@ $zoneCounter = \DB::table('w_officers')
 
 
         return view('dashboard',  compact('news', 'announcement', 'members','count','all','woreda','allcity','roles','officers','zoneCounts','orgacount','positionCounts','zonesposition','zoneCounter'),
-        ['positionCounts' => $positionCounts]);
+        ['positionCounts' => $positionCounts],['zoneCounts' => $zoneCounts],['zoneCounter' => $zoneCounter]);
+    }
+
+
+    public function index2(){
+        return view('dashboard2');
     }
 }

@@ -15,7 +15,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Content</strong>
-            <textarea class="form-control" id="content" name="content" placeholder="Enter Content"></textarea>
+            <input class="form-control"  name="content" placeholder="Enter Content">
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -33,7 +33,7 @@
 @section('script')
 <script>
     ClassicEditor
-        .create(document.querySelector('#content'))
+        .create(document.querySelector('#details'))
         .catch(error => {
             console.error(error);
         });

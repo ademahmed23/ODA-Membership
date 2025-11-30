@@ -54,6 +54,12 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
+         <li class="menu-item {{ Request::is('dashboard2') ? 'active' : '' }}">
+            <a href="{{ route('dashboard2.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard-2</div>
+            </a>
+        </li>
         @can('user-list')
             <li class="menu-item {{ Request::is('users') ? 'active' : '' }}">
                 <a href="{{ route('users.index') }}" class="menu-link">
@@ -113,6 +119,13 @@
                 </a>
             </li>
         @endcan
+
+                    <li class="menu-item {{ Request::is('project') ? 'active' : '' }}">
+                <a href="{{ route('project.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-medal"></i>
+                    <div data-i18n="Analytics">Projects</div>
+                </a>
+            </li>
 
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -282,6 +295,61 @@
                         </a>
                     </li>
                 @endcan
+
+                 @can('qeellam-list')
+                    <li class="menu-item  {{ Request::is('qeellam') ? 'active' : '' }}">
+                        <a href="{{ route('qeellam.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Qeellam Wallaggaa</div>
+                        </a>
+                    </li>
+                @endcan
+
+                  @can('sh_bahaa-list')
+                    <li class="menu-item  {{ Request::is('sh_bahaa') ? 'active' : '' }}">
+                        <a href="{{ route('sh_bahaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Shawaa Bahaa</div>
+                        </a>
+                    </li>
+                @endcan
+
+                 @can('sh_kaabaa-list')
+                    <li class="menu-item  {{ Request::is('sh_kaabaa') ? 'active' : '' }}">
+                        <a href="{{ route('sh_kaabaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Shawaa Kaabaa</div>
+                        </a>
+                    </li>
+                @endcan
+                 @can('sh_k_lixaa-list')
+                    <li class="menu-item  {{ Request::is('sh_k_lixaa') ? 'active' : '' }}">
+                        <a href="{{ route('sh_k_lixaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Sh/K/Lixaa</div>
+                        </a>
+                    </li>
+                @endcan
+
+                 @can('sh_lixaa-list')
+                    <li class="menu-item  {{ Request::is('sh_lixaa') ? 'active' : '' }}">
+                        <a href="{{ route('sh_lixaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Shawaa Lixaa</div>
+                        </a>
+                    </li>
+                @endcan
+                  @can('w_bahaa-list')
+                    <li class="menu-item  {{ Request::is('w_bahaa') ? 'active' : '' }}">
+                        <a href="{{ route('w_bahaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Wallagga Bahaa</div>
+                        </a>
+                    </li>
+                @endcan
+
+                  @can('w_lixaa-list')
+                    <li class="menu-item  {{ Request::is('w_lixaa') ? 'active' : '' }}">
+                        <a href="{{ route('w_lixaa.index') }}" class="menu-link">
+                            <div data-i18n="Without menu">Wallagga Lixaa</div>
+                        </a>
+                    </li>
+                @endcan
+                
                 {{-- Add more organizations here as needed --}}
             </ul>
         </li>

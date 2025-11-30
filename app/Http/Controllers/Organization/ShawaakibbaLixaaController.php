@@ -2,31 +2,31 @@
 
 namespace App\Http\Controllers\Organization;
 
-use App\Models\Organization\Baalee;
+use App\Models\Organization\ShawaakLixaa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
-use App\Imports\Organization\BaaleeImport;
+use App\Imports\Organization\ShawaaKibbaLixaaImport;
 
-class BaaleeController extends Controller
+class ShawaakibbaLixaaController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
 
-        $this->middleware('permission:baalee-list|baalee-create|baalee-edit|baalee-delete', ['only' => ['index','store']]);
-        $this->middleware('permission:baalee-create', ['only' => ['create','store']]);
-        $this->middleware('permission:baalee-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:baalee-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:sh_k_lixaa-list|sh_k_lixaa-create|sh_k_lixaa-edit|sh_k_lixaa-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:sh_k_lixaa-create', ['only' => ['create','store']]);
+        $this->middleware('permission:sh_k_lixaa-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:sh_k_lixaa-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
-        $zone = 'baalee';
-        $count = Baalee::count();
-        $name = 'Baalee';
+        $zone = 'sh_k_lixaa';
+        $count = ShawaakLixaa::count();
+        $name = 'Shawaa Kibba Lixaa';
         $export = true;
         $woreda = $request->woreda;
 
@@ -38,7 +38,7 @@ class BaaleeController extends Controller
             ->pluck('woreda');
 
         // BASE QUERY
-        $query = Baalee::query();
+        $query = ShawaakLixaa::query();
 
         if ($woreda) {
             $query->where('woreda', $woreda);
@@ -51,21 +51,21 @@ class BaaleeController extends Controller
             $item->row_id = ($reports->currentPage() - 1) * $reports->perPage() + $key + 1;
             $item->has_paid = \DB::table('zone_member_pays')
                 ->where('member_id', $item->id)
-                ->where('model', 'baalee')
+                ->where('model', 'sh_k_lixaa')
                 ->whereMonth('date', now()->month)
                 ->whereYear('date', now()->year)
                 ->exists();
             return $item;
         });
 
-        return view('organization.baalee.index', compact(
+        return view('organization.sh_k_lixaa.index', compact(
             'reports','count','name','export','woredas','woreda','zone'
         ));
     }
 
     public function create()
     {
-        // CHANGE THESE WOREDA NAMES TO BAALEE WOREDA LIST
+        // CHANGE THESE WOREDA NAMES TO sh_k_lixaa WOREDA LIST
         $woredas = [
              'Agaarfaa',
             'Barbaree',
@@ -101,7 +101,7 @@ class BaaleeController extends Controller
 
         $joption = json_encode($org_option);
 
-        return view('organization.baalee.create', compact('jsonOptions','joption'));
+        return view('organization.sh_k_lixaa.create', compact('jsonOptions','joption'));
     }
 
     public function store(Request $request)
@@ -132,7 +132,7 @@ class BaaleeController extends Controller
             'organization_type' => 'nullable|string',
             'woreda'            => 'nullable|string',
             'phone_number'      => 'nullable|numeric|digits_between:9,14',
-            'email'             => 'nullable|email|unique:baalee',
+            'email'             => 'nullable|email|unique:sh_k_lixaa',
             'payment_period'    => 'nullable|string',
             'member_started'    => 'nullable|date',
             'payment'           => 'nullable|numeric',
@@ -141,16 +141,16 @@ class BaaleeController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $docName;
 
-        Baalee::create($validated);
+        ShawaakLixaa::create($validated);
 
-        return redirect()->route('baalee.index')->with('success','Baalee Member Created Successfully');
+        return redirect()->route('sh_k_lixaa.index')->with('success','sh_k_lixaa Member Created Successfully');
     }
 
     public function edit($id)
     {
-        $baalee = Baalee::findOrFail($id);
+        $sh_k_lixaa = ShawaakLixaa::findOrFail($id);
 
-        // CHANGE WOREDA NAMES FOR BAALEE
+        // CHANGE WOREDA NAMES FOR sh_k_lixaa
         $woredas = [
             'Agaarfaa',
             'Barbaree',
@@ -186,12 +186,12 @@ class BaaleeController extends Controller
 
         $joption = json_encode($org_option);
 
-        return view('organization.baalee.edit', compact('baalee','jsonOptions','joption'));
+        return view('organization.sh_k_lixaa.edit', compact('sh_k_lixaa','jsonOptions','joption'));
     }
 
     public function update(Request $request, $id)
     {
-        $baalee = Baalee::findOrFail($id);
+        $sh_k_lixaa = ShawaakLixaa::findOrFail($id);
 
         // IMAGE UPDATE
         if ($request->hasFile('image')) {
@@ -200,7 +200,7 @@ class BaaleeController extends Controller
             Image::make($image)->save('Photo/' . $name_gen);
             $last_thumb = 'Photo/' . $name_gen;
         } else {
-            $last_thumb = $baalee->image;
+            $last_thumb = $sh_k_lixaa->image;
         }
 
         // DOCUMENT UPDATE
@@ -209,7 +209,7 @@ class BaaleeController extends Controller
             $docName = time() . '.' . $doc->getClientOriginalExtension();
             $doc->move(public_path('/Document'), $docName);
         } else {
-            $docName = $baalee->document;
+            $docName = $sh_k_lixaa->document;
         }
 
         // VALIDATION
@@ -219,7 +219,7 @@ class BaaleeController extends Controller
             'organization_type' => 'nullable|string',
             'woreda'            => 'nullable|string',
             'phone_number'      => 'nullable|numeric|digits_between:9,14',
-            'email'             => 'nullable|email|unique:baalee',
+            'email'             => 'nullable|email|unique:sh_k_lixaa',
             'payment_period'    => 'nullable|string',
             'member_started'    => 'nullable|date',
             'payment'           => 'nullable|integer',
@@ -228,17 +228,17 @@ class BaaleeController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $docName;
 
-        $baalee->update($validated);
+        $sh_k_lixaa->update($validated);
 
-        return redirect()->route('baalee.index')->with('update','Baalee Member Updated Successfully');
+        return redirect()->route('sh_k_lixaa.index')->with('update','sh_k_lixaa Member Updated Successfully');
     }
 
     public function destroy($id)
     {
-        $baalee = Baalee::findOrFail($id);
-        $baalee->delete();
+        $sh_k_lixaa = ShawaakLixaa::findOrFail($id);
+        $sh_k_lixaa->delete();
 
-        return redirect()->route('baalee.index')->with('delete','Baalee Member Deleted Successfully');
+        return redirect()->route('sh_k_lixaa.index')->with('delete','sh_k_lixaa Member Deleted Successfully');
     }
 
     public function import(Request $request)
@@ -248,12 +248,12 @@ class BaaleeController extends Controller
         ]);
 
         try {
-            $maxId = Baalee::max('id');
+            $maxId = ShawaakLixaa::max('id');
 
-            Excel::import(new BaaleeImport($maxId), $request->file('file'));
+            Excel::import(new ShawaaKibbaLixaaImport($maxId), $request->file('file'));
 
-            return redirect()->route('baalee.index')
-                ->with('success', 'Baalee Imported successfully');
+            return redirect()->route('sh_k_lixaa.index')
+                ->with('success', 'sh_k_lixaa Imported successfully');
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -261,9 +261,9 @@ class BaaleeController extends Controller
 
     public function pay($id)
     {
-        $member = Baalee::findOrFail($id);
-        $model = 'baalee';
+        $member = ShawaakLixaa::findOrFail($id);
+        $model = 'sh_k_lixaa';
 
-        return view('organization.baalee.create', compact('member','model'));
+        return view('organization.sh_k_lixaa.create', compact('member','model'));
     }
 }

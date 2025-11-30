@@ -24,11 +24,44 @@ class Zone16Controller extends Controller
         $this->middleware('permission:zone16-delete', ['only' => ['destroy']]);
     }
 
-    public function index()
-    {
-        $count = Zone16::count();
+   
+   public function index(Request $request){
+            $zone = 'zone16s';
+    $count = Zone16::count();
+    $name = 'Shawaa Bahaa';
+    $export = true;
+    $woreda = $request->woreda;
 
-        return view('zones.zone16.index', compact('count'));
+    // Get distinct woredas
+    $woredas = \DB::table($zone)
+        ->select('woreda')
+        ->distinct()
+        ->orderBy('woreda')
+        ->pluck('woreda');
+
+    // Base query
+    $query = Zone16::query();
+
+    // Filter by woreda if provided
+    if ($woreda) {
+        $query->where('woreda', $woreda);
+    }
+
+    // Use pagination instead of get()
+    $reports = $query->paginate(10); // 10 items per page
+
+    // Add computed fields
+    $reports->getCollection()->transform(function ($item, $key) use ($reports) {
+        $item->row_id = ($reports->currentPage() - 1) * $reports->perPage() + $key + 1; // continuous numbering
+        $item->has_paid = \DB::table('zone_member_pays')
+            ->where('member_id', $item->id)
+            ->where('model', 'zone7')
+            ->whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->exists();
+        return $item;
+    });
+    return view('zones.zone16.index', compact('reports', 'name', 'zone', 'woreda', 'export', 'woredas','count'));
     }
 
     public function create()

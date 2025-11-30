@@ -15,7 +15,7 @@ class Qeellam extends Model
     use HasFactory;
     use LogsActivity;
 
-    protected $table = 'q_wallagga';
+    protected $table = 'q_wallaga';
     protected $fillable = [
         'member_id',
         'organization_name',
@@ -25,7 +25,7 @@ class Qeellam extends Model
         'email',
         'payment_period',
         'member_started',
-        'paymemt',
+        'payment',
         
     ];
 
@@ -44,6 +44,6 @@ class Qeellam extends Model
     {
         return LogOptions::defaults()
             ->logOnly(['*'])
-            ->useLogName("q_wallagga");
+            ->useLogName("q_wallaga");
     }
 }

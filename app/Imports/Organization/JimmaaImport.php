@@ -40,7 +40,7 @@ class JimmaaImport implements ToCollection
                         'email' => $row[5],
                         'payment_period' => $row[6],
                         'member_started' => $row[7],
-                        'paymemt' => $row[8],
+                        'payment' => $row[8],
                     ]);
 
                 } catch (\Exception $e) {

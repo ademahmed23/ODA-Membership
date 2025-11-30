@@ -104,7 +104,6 @@
             @endforeach
         </tbody>
     </table>
-    {!! $reports->links() !!}
    
 
 @endsection

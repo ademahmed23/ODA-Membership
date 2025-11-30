@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\Organization;
 
-use App\Models\Organization\Buunnoo;
+use App\Models\Organization\WallaggaBahaa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
-use App\Imports\Organization\BuunnooImport;
+use App\Imports\Organization\WallaggaBahaaImport;
 
-class BuunnooBeddelleeController extends Controller
+class WallaggaBahaaController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
 
-        $this->middleware('permission:buunnoo-list|buunnoo-create|buunnoo-edit|buunnoo-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:buunnoo-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:buunnoo-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:buunnoo-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:w_bahaa-list|w_bahaa-create|w_bahaa-edit|w_bahaa-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:w_bahaa-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:w_bahaa-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:w_bahaa-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
-        $zone = 'b_baddalle';
-        $count = Buunnoo::count();
-        $name = 'b_baddalle';
+        $zone = 'wahaa';
+        $count = WallaggaBahaa::count();
+        $name = 'Wallaga Bahaa';
         $export = true;
         $woreda = $request->woreda;
 
@@ -35,7 +35,7 @@ class BuunnooBeddelleeController extends Controller
             ->orderBy('organization_name', 'ASC')
             ->pluck('woreda');
 
-        $query = Buunnoo::query();
+        $query = WallaggaBahaa::query();
 
         if ($woreda) {
             $query->where('woreda', $woreda);
@@ -47,14 +47,14 @@ class BuunnooBeddelleeController extends Controller
             $item->row_id = ($reports->currentPage() - 1) * $reports->perPage() + $key + 1;
             $item->has_paid = \DB::table('zone_member_pays')
                 ->where('member_id', $item->id)
-                ->where('model', 'buunnoo')
+                ->where('model', 'w_bahaa')
                 ->whereMonth('date', now()->month)
                 ->whereYear('date', now()->year)
                 ->exists();
             return $item;
         });
 
-        return view('organization.buunnoo.index', compact('reports','count','name','export','woredas','woreda','zone'));
+        return view('organization.w_bahaa.index', compact('reports','count','name','export','woredas','woreda','zone'));
     }
 
     public function create()
@@ -85,7 +85,7 @@ class BuunnooBeddelleeController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.buunnoo.create', compact('jsonOptions','joption'));
+        return view('organization.w_bahaa.create', compact('jsonOptions','joption'));
     }
 
     public function store(Request $request)
@@ -112,7 +112,7 @@ class BuunnooBeddelleeController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:b_badelle',
+            'email' => 'nullable|email|unique:wahaa',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -121,14 +121,14 @@ class BuunnooBeddelleeController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        Buunnoo::create($validated);
+        WallaggaBahaa::create($validated);
 
-        return redirect()->route('buunnoo.index')->with('success','buunnoo Member Created Successfully');
+        return redirect()->route('w_bahaa.index')->with('success','Wallagga Bahaa Member Created Successfully');
     }
 
     public function edit($id)
     {
-        $buunnoo = Buunnoo::findOrFail($id);
+        $w_bahaa = WallaggaBahaa::findOrFail($id);
 
         $woredas = [
  'M-Beddeellee',
@@ -155,15 +155,15 @@ class BuunnooBeddelleeController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.buunnoo.edit', compact('buunnoo','jsonOptions','joption'));
+        return view('organization.w_bahaa.edit', compact('w_bahaa','jsonOptions','joption'));
     }
 
     public function update(Request $request, $id)
     {
-        $buunnoo = Buunnoo::findOrFail($id);
+        $w_bahaa = WallaggaBahaa::findOrFail($id);
 
-        $last_thumb = $buunnoo->image;
-        $documentname = $buunnoo->document;
+        $last_thumb = $w_bahaa->image;
+        $documentname = $w_bahaa->document;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -184,7 +184,7 @@ class BuunnooBeddelleeController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:b_baddalle',
+            'email' => 'nullable|email|unique:wahaa',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -193,17 +193,17 @@ class BuunnooBeddelleeController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        $buunnoo->update($validated);
+        $w_bahaa->update($validated);
 
-        return redirect()->route('buunnoo.index')->with('update','buunnoo Member Updated Successfully');
+        return redirect()->route('w_bahaa.index')->with('update','w_bahaa Member Updated Successfully');
     }
 
     public function destroy($id)
     {
-        $buunnoo = Buunnoo::findOrFail($id);
-        $buunnoo->delete();
+        $w_bahaa = WallaggaBahaa::findOrFail($id);
+        $w_bahaa->delete();
 
-        return redirect()->route('buunnoo.index')->with('delete','buunnoo Member Deleted Successfully');
+        return redirect()->route('w_bahaa.index')->with('delete','w_bahaa Member Deleted Successfully');
     }
 
     public function import(Request $request)
@@ -213,10 +213,10 @@ class BuunnooBeddelleeController extends Controller
         ]);
 
         try {
-            $maxId = Buunnoo::max('id');
-            Excel::import(new buunnooImport($maxId), $request->file('file'));
+            $maxId = WallaggaBahaa::max('id');
+            Excel::import(new WallaggaBahaaImport($maxId), $request->file('file'));
 
-            return redirect()->route('buunnoo.index')->with('success','buunnoo Imported Successfully');
+            return redirect()->route('w_bahaa.index')->with('success','w_bahaa Imported Successfully');
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -224,9 +224,9 @@ class BuunnooBeddelleeController extends Controller
 
     public function pay($id)
     {
-        $member = Buunnoo::findOrFail($id);
-        $model = "buunnoo";
+        $member = WallaggaBahaa::findOrFail($id);
+        $model = "w_bahaa";
 
-        return view('organization.buunnoo.create', compact('member', 'model'));
+        return view('organization.w_bahaa.create', compact('member', 'model'));
     }
 }

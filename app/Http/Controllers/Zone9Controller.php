@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Zone9;
 use App\Imports\Zone9Import;
+use Complex\Functions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -23,12 +24,43 @@ class Zone9Controller extends Controller
 
         $this->middleware('permission:zone9-delete', ['only' => ['destroy']]);
     }
+public function index(Request $request){
+            $zone = 'zone9s';
+    $count = Zone9::count();
+    $name = 'Gujii';
+    $export = true;
+    $woreda = $request->woreda;
 
-    public function index()
-    {
-        $count = Zone9::count();
+    // Get distinct woredas
+    $woredas = \DB::table($zone)
+        ->select('woreda')
+        ->distinct()
+        ->orderBy('woreda')
+        ->pluck('woreda');
 
-        return view('zones.zone9.index', compact('count'));
+    // Base query
+    $query = Zone9::query();
+
+    // Filter by woreda if provided
+    if ($woreda) {
+        $query->where('woreda', $woreda);
+    }
+
+    // Use pagination instead of get()
+    $reports = $query->paginate(10); // 10 items per page
+
+    // Add computed fields
+    $reports->getCollection()->transform(function ($item, $key) use ($reports) {
+        $item->row_id = ($reports->currentPage() - 1) * $reports->perPage() + $key + 1; // continuous numbering
+        $item->has_paid = \DB::table('zone_member_pays')
+            ->where('member_id', $item->id)
+            ->where('model', 'zone7')
+            ->whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->exists();
+        return $item;
+    });
+    return view('zones.zone9.index', compact('reports', 'name', 'zone', 'woreda', 'export', 'woredas','count'));
     }
 
     public function create()

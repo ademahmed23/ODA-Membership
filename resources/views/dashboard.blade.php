@@ -87,7 +87,7 @@
         {{-- Total Reven --}}
         <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
             <div class="card">
-                <h5 class="card-header m-0 pb-3">Members per Zone</h5>
+                <h5 class="card-header m-0 pb-3">Individuals & Organization Members</h5>
                 <div id="zoneMembersChart" class="px-2" style="min-height: 200px;"></div>
             </div>
         </div>
@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <!-- </div>
-                <div class="row"> -->
+                        <div class="row"> -->
                 <div class="col-12 mb-4">
                     <div class="card">
                         <div class="card-body">
@@ -333,7 +333,7 @@
                             </div>
 
                             <div id="zoneBarChart"></div>
-                            <div class="d-flex justify-content-center pt-4 gap-2">
+                            {{-- <div class="d-flex justify-content-center pt-4 gap-2">
                                 <div class="flex-shrink-0">
                                     <div id="expensesOfWeek"></div>
                                 </div>
@@ -342,15 +342,15 @@
                                     <p class="mb-n1 mt-1">Expenses This Week</p>
                                     <small class="text-muted">$39 less than last week</small>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
-          <div class="col-md-6 col-lg-4 order-1 mb-4">
+        <div class="col-md-6 col-lg-4 order-1 mb-4">
             <div class="card h-100">
                 {{-- <div class="card-header">
                     <ul class="nav nav-pills" role="tablist">
@@ -389,81 +389,99 @@
                             </div>
 
                             <div id="Organization"></div>
-                           
+
                         </div>
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
         <!--/ Expense Overview -->
 
         <!-- Transactions -->
-        
-        
+
+
         <!--/ Transactions -->
     </div>
 @endsection
 {{-- @push('Scripts') --}}
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var options = {
-            chart: {
-                type: 'area',
-                height: 300
-            },
-            stroke: {
-                curve: 'smooth',
-                width: 6,
-                lineCap: 'round'
-            },
-            legend: {
-                show: true,
-                horizontalAlign: 'left',
-                position: 'top',
-                markers: {
-                    height: 8,
-                    width: 8,
-                    radius: 12,
-                    offsetX: -3
-                },
+document.addEventListener("DOMContentLoaded", function() {
+    var options = {
+        chart: {
+            height: 350,
+            stacked: false,
+            type: 'area',
+            toolbar: { show: true }
+        },
 
-                itemMargin: {
-                    horizontal: 10
-                }
-            },
+        colors: [config.colors.success, config.colors.info],
 
-            series: [{
-                name: 'Members',
-                data: @json(array_column($zoneCounts, 'members'))
-            }],
-            xaxis: {
-                categories: @json(array_column($zoneCounts, 'zone'))
+        dataLabels: { enabled: false },
+
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+            lineCap: 'round'
+        },
+
+        legend: {
+            show: true,
+            horizontalAlign: 'center',
+            position: 'top',
+            markers: {
+                height: 8,
+                width: 8,
+                radius: 12,
+                offsetX: -3
             },
-            plotOptions: {
-                bar: {
-                    borderRadius: 20,
-                    horizontal: false,
-                }
+            itemMargin: { horizontal: 10 }
+        },
+
+        // 🔥 Two datasets, separate Y-axes
+        series: [
+            {
+                name: 'Individual Members',
+                data: @json(array_column($zoneCounts, 'members')),
+                yAxisIndex: 0
             },
-            stroke: {
-                curve: 'smooth' // This makes the line smooth instead of jagged
-            },
-            dataLabels: {
-                enabled: false
-            },
-            title: {
-                text: 'Members in Each Zone',
-                align: 'center'
+            {
+                name: 'Organization Members',
+                data: @json(array_column($orgacount, 'adem')),
+                yAxisIndex: 1
             }
-        };
+        ],
 
-        var chart = new ApexCharts(document.querySelector("#zoneMembersChart"), options);
-        chart.render();
-    });
+        // 🔥 Dual Y-axis fix
+        yaxis: [
+            {
+                title: { text: "Individual Members" },
+                labels: { formatter: val => val.toLocaleString() }
+            },
+            {
+                opposite: true,
+                title: { text: "Organization Members" },
+                labels: { formatter: val => val.toLocaleString() }
+            }
+        ],
+
+        xaxis: {
+            categories: @json(array_column($zoneCounts, 'zone'))
+        },
+
+        title: {
+            text: 'Members in Each Zone',
+            align: 'center'
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#zoneMembersChart"), options);
+    chart.render();
+});
 </script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -492,6 +510,8 @@
                     horizontal: 10
                 }
             },
+
+
 
             series: [{
                 name: 'Members',
@@ -545,6 +565,7 @@
 
             series: Object.values(positionCounts),
             labels: Object.keys(positionCounts),
+            //  colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.success,'#ff3e1d'],
             legend: {
                 show: false
             },
@@ -582,11 +603,30 @@
 
         const chartConfig = {
             chart: {
-                type: 'bar',
-                height: 250
+                type: 'area',
+                height: 300
             },
             dataLabels: {
                 enabled: false
+            },
+
+            markers: {
+                size: 6,
+                colors: 'transparent',
+                strokeColors: 'transparent',
+                strokeWidth: 4,
+                discrete: [{
+                    fillColor: config.colors.success,
+                    seriesIndex: 0,
+                    dataPointIndex: 20,
+                    strokeColor: config.colors.success,
+                    strokeWidth: 2,
+                    size: 6,
+                    radius: 8
+                }],
+                hover: {
+                    size: 7
+                }
             },
             series: [{
                 name: 'Officers',

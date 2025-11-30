@@ -17,11 +17,13 @@ class Zone20 extends Model
 
     protected $table = 'zone20s';
     protected $fillable = [
+        'member_id',
         'first_name',
         'middle_name',
         'last_name',
         'gender',
         'age',
+        'education_level',
         'address',
         'contact_number',
         'woreda',

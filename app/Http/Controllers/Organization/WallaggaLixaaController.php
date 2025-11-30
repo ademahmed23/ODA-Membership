@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\Organization;
 
-use App\Models\Organization\Finfinnee;
+use App\Models\Organization\WallaggaLixaa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
-use App\Imports\Organization\FinfinneeImport;
+use App\Imports\Organization\WallaggaLixaaImport;
 
-class FinfinneeController extends Controller
+class WallaggaLixaaController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
 
-        $this->middleware('permission:finfinnee-list|finfinnee-create|finfinnee-edit|finfinnee-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:finfinnee-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:finfinnee-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:finfinnee-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:w_lixaa-list|w_lixaa-create|w_lixaa-edit|w_lixaa-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:w_lixaa-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:w_lixaa-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:w_lixaa-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
-        $zone = 'finfinnee';
-        $count = Finfinnee::count();
-        $name = 'finfinnee';
+        $zone = 'w_lixaa';
+        $count = WallaggaLixaa::count();
+        $name = 'Wallagga Lixaa';
         $export = true;
         $woreda = $request->woreda;
 
@@ -35,7 +35,7 @@ class FinfinneeController extends Controller
             ->orderBy('organization_name', 'ASC')
             ->pluck('woreda');
 
-        $query = Finfinnee::query();
+        $query = WallaggaLixaa::query();
 
         if ($woreda) {
             $query->where('woreda', $woreda);
@@ -47,14 +47,14 @@ class FinfinneeController extends Controller
             $item->row_id = ($reports->currentPage() - 1) * $reports->perPage() + $key + 1;
             $item->has_paid = \DB::table('zone_member_pays')
                 ->where('member_id', $item->id)
-                ->where('model', 'finfinnee')
+                ->where('model', 'w_lixaa')
                 ->whereMonth('date', now()->month)
                 ->whereYear('date', now()->year)
                 ->exists();
             return $item;
         });
 
-        return view('organization.finfinnee.index', compact('reports','count','name','export','woredas','woreda','zone'));
+        return view('organization.w_lixaa.index', compact('reports','count','name','export','woredas','woreda','zone'));
     }
 
     public function create()
@@ -89,7 +89,7 @@ class FinfinneeController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.finfinnee.create', compact('jsonOptions','joption'));
+        return view('organization.w_lixaa.create', compact('jsonOptions','joption'));
     }
 
     public function store(Request $request)
@@ -116,7 +116,7 @@ class FinfinneeController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:finfinnee',
+            'email' => 'nullable|email|unique:w_lixaa',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -125,14 +125,14 @@ class FinfinneeController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        Finfinnee::create($validated);
+        WallaggaLixaa::create($validated);
 
-        return redirect()->route('finfinnee.index')->with('success','finfinnee Member Created Successfully');
+        return redirect()->route('w_lixaa.index')->with('success','w_lixaa Member Created Successfully');
     }
 
     public function edit($id)
     {
-        $finfinnee = Finfinnee::findOrFail($id);
+        $w_lixaa = WallaggaLixaa::findOrFail($id);
 
         $woredas = [
             'Aanaa Aqaaqii',
@@ -163,15 +163,15 @@ class FinfinneeController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.finfinnee.edit', compact('finfinnee','jsonOptions','joption'));
+        return view('organization.w_lixaa.edit', compact('w_lixaa','jsonOptions','joption'));
     }
 
     public function update(Request $request, $id)
     {
-        $finfinnee = Finfinnee::findOrFail($id);
+        $w_lixaa = WallaggaLixaa::findOrFail($id);
 
-        $last_thumb = $finfinnee->image;
-        $documentname = $finfinnee->document;
+        $last_thumb = $w_lixaa->image;
+        $documentname = $w_lixaa->document;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -192,7 +192,7 @@ class FinfinneeController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:finfinnee',
+            'email' => 'nullable|email|unique:w_lixaa',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -201,17 +201,17 @@ class FinfinneeController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        $finfinnee->update($validated);
+        $w_lixaa->update($validated);
 
-        return redirect()->route('finfinnee.index')->with('update','finfinnee Member Updated Successfully');
+        return redirect()->route('w_lixaa.index')->with('update','w_lixaa Member Updated Successfully');
     }
 
     public function destroy($id)
     {
-        $finfinnee = Finfinnee::findOrFail($id);
-        $finfinnee->delete();
+        $w_lixaa = WallaggaLixaa::findOrFail($id);
+        $w_lixaa->delete();
 
-        return redirect()->route('finfinnee.index')->with('delete','finfinnee Member Deleted Successfully');
+        return redirect()->route('w_lixaa.index')->with('delete','w_lixaa Member Deleted Successfully');
     }
 
     public function import(Request $request)
@@ -221,10 +221,10 @@ class FinfinneeController extends Controller
         ]);
 
         try {
-            $maxId = Finfinnee::max('id');
-            Excel::import(new FinfinneeImport($maxId), $request->file('file'));
+            $maxId = WallaggaLixaa::max('id');
+            Excel::import(new WallaggaLixaaImport($maxId), $request->file('file'));
 
-            return redirect()->route('finfinnee.index')->with('success','finfinnee Imported Successfully');
+            return redirect()->route('w_lixaa.index')->with('success','w_lixaa Imported Successfully');
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -232,9 +232,9 @@ class FinfinneeController extends Controller
 
     public function pay($id)
     {
-        $member = Finfinnee::findOrFail($id);
-        $model = "finfinnee";
+        $member = WallaggaLixaa::findOrFail($id);
+        $model = "w_lixaa";
 
-        return view('organization.finfinnee.create', compact('member', 'model'));
+        return view('organization.w_lixaa.create', compact('member', 'model'));
     }
 }

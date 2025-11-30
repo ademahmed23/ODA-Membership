@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\Organization;
 
-use App\Models\Organization\Gujii;
+use App\Models\Organization\ShawaaBahaa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
-use App\Imports\Organization\GujiiImport;
+use App\Imports\Organization\ShawaaBahaaImport;
 
-class GujiiController extends Controller
+class ShawaaBahaaController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
 
-        $this->middleware('permission:gujii-list|gujii-create|gujii-edit|gujii-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:gujii-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:gujii-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:gujii-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:sh_bahaa-list|sh_bahaa-create|sh_bahaa-edit|sh_bahaa-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:sh_bahaa-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:sh_bahaa-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:sh_bahaa-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
-        $zone = 'gujii';
-        $count = Gujii::count();
-        $name = 'gujii';
+        $zone = 'sh_bahaa';
+        $count = ShawaaBahaa::count();
+        $name = 'Shawaa Bahaa';
         $export = true;
         $woreda = $request->woreda;
 
@@ -35,7 +35,7 @@ class GujiiController extends Controller
             ->orderBy('organization_name', 'ASC')
             ->pluck('woreda');
 
-        $query = Gujii::query();
+        $query = ShawaaBahaa::query();
 
         if ($woreda) {
             $query->where('woreda', $woreda);
@@ -47,14 +47,14 @@ class GujiiController extends Controller
             $item->row_id = ($reports->currentPage() - 1) * $reports->perPage() + $key + 1;
             $item->has_paid = \DB::table('zone_member_pays')
                 ->where('member_id', $item->id)
-                ->where('model', 'gujii')
+                ->where('model', 'sh_bahaa')
                 ->whereMonth('date', now()->month)
                 ->whereYear('date', now()->year)
                 ->exists();
             return $item;
         });
 
-        return view('organization.gujii.index', compact('reports','count','name','export','woredas','woreda','zone'));
+        return view('organization.sh_bahaa.index', compact('reports','count','name','export','woredas','woreda','zone'));
     }
 
     public function create()
@@ -90,7 +90,7 @@ class GujiiController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.gujii.create', compact('jsonOptions','joption'));
+        return view('organization.sh_bahaa.create', compact('jsonOptions','joption'));
     }
 
     public function store(Request $request)
@@ -117,7 +117,7 @@ class GujiiController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:gujii',
+            'email' => 'nullable|email|unique:sh_bahaa',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -126,14 +126,14 @@ class GujiiController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        Gujii::create($validated);
+        ShawaaBahaa::create($validated);
 
-        return redirect()->route('gujii.index')->with('success','gujii Member Created Successfully');
+        return redirect()->route('sh_bahaa.index')->with('success','sh_bahaa Member Created Successfully');
     }
 
     public function edit($id)
     {
-        $gujii = Gujii::findOrFail($id);
+        $sh_bahaa = ShawaaBahaa::findOrFail($id);
 
         $woredas = [
            'Od/Shakkisoo',
@@ -165,15 +165,15 @@ class GujiiController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.gujii.edit', compact('gujii','jsonOptions','joption'));
+        return view('organization.sh_bahaa.edit', compact('sh_bahaa','jsonOptions','joption'));
     }
 
     public function update(Request $request, $id)
     {
-        $gujii = Gujii::findOrFail($id);
+        $sh_bahaa = ShawaaBahaa::findOrFail($id);
 
-        $last_thumb = $gujii->image;
-        $documentname = $gujii->document;
+        $last_thumb = $sh_bahaa->image;
+        $documentname = $sh_bahaa->document;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -194,7 +194,7 @@ class GujiiController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:gujii',
+            'email' => 'nullable|email|unique:sh_bahaa',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -203,17 +203,17 @@ class GujiiController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        $gujii->update($validated);
+        $sh_bahaa->update($validated);
 
-        return redirect()->route('gujii.index')->with('update','gujii Member Updated Successfully');
+        return redirect()->route('sh_bahaa.index')->with('update','sh_bahaa Member Updated Successfully');
     }
 
     public function destroy($id)
     {
-        $gujii = Gujii::findOrFail($id);
-        $gujii->delete();
+        $sh_bahaa = ShawaaBahaa::findOrFail($id);
+        $sh_bahaa->delete();
 
-        return redirect()->route('gujii.index')->with('delete','gujii Member Deleted Successfully');
+        return redirect()->route('sh_bahaa.index')->with('delete','sh_bahaa Member Deleted Successfully');
     }
 
     public function import(Request $request)
@@ -223,10 +223,10 @@ class GujiiController extends Controller
         ]);
 
         try {
-            $maxId = Gujii::max('id');
-            Excel::import(new GujiiImport($maxId), $request->file('file'));
+            $maxId = ShawaaBahaa::max('id');
+            Excel::import(new ShawaaBahaaImport($maxId), $request->file('file'));
 
-            return redirect()->route('gujii.index')->with('success','gujii Imported Successfully');
+            return redirect()->route('sh_bahaa.index')->with('success','sh_bahaa Imported Successfully');
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -234,9 +234,9 @@ class GujiiController extends Controller
 
     public function pay($id)
     {
-        $member = Gujii::findOrFail($id);
-        $model = "gujii";
+        $member = ShawaaBahaa::findOrFail($id);
+        $model = "sh_bahaa";
 
-        return view('organization.gujii.create', compact('member', 'model'));
+        return view('organization.sh_bahaa.create', compact('member', 'model'));
     }
 }

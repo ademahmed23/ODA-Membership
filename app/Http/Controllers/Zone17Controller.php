@@ -28,7 +28,7 @@ class Zone17Controller extends Controller
     $count_woreda = Zone17::where('woreda','kuyyuu')->count();
             $zone = 'zone17s';
     $count = Zone17::count();
-    $name = 'Shawaa-Kaabaa';
+    $name = 'Shawaa Kaabaa';
     $export = true;
     $woreda = $request->woreda;
 

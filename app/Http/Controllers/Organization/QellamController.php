@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\Organization;
 
-use App\Models\Organization\Finfinnee;
+use App\Models\Organization\Qeellam;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
-use App\Imports\Organization\FinfinneeImport;
+use App\Imports\Organization\QeellamImport;
 
-class FinfinneeController extends Controller
+class QellamController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
 
-        $this->middleware('permission:finfinnee-list|finfinnee-create|finfinnee-edit|finfinnee-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:finfinnee-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:finfinnee-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:finfinnee-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:qeellam-list|qeellam-create|qeellam-edit|qeellam-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:qeellam-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:qeellam-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:qeellam-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
-        $zone = 'finfinnee';
-        $count = Finfinnee::count();
-        $name = 'finfinnee';
+        $zone = 'q_wallaga';
+        $count = Qeellam::count();
+        $name = 'Qeellam Wallaggaa';
         $export = true;
         $woreda = $request->woreda;
 
@@ -35,7 +35,7 @@ class FinfinneeController extends Controller
             ->orderBy('organization_name', 'ASC')
             ->pluck('woreda');
 
-        $query = Finfinnee::query();
+        $query = Qeellam::query();
 
         if ($woreda) {
             $query->where('woreda', $woreda);
@@ -47,14 +47,14 @@ class FinfinneeController extends Controller
             $item->row_id = ($reports->currentPage() - 1) * $reports->perPage() + $key + 1;
             $item->has_paid = \DB::table('zone_member_pays')
                 ->where('member_id', $item->id)
-                ->where('model', 'finfinnee')
+                ->where('model', 'qeellam')
                 ->whereMonth('date', now()->month)
                 ->whereYear('date', now()->year)
                 ->exists();
             return $item;
         });
 
-        return view('organization.finfinnee.index', compact('reports','count','name','export','woredas','woreda','zone'));
+        return view('organization.qeellam.index', compact('reports','count','name','export','woredas','woreda','zone'));
     }
 
     public function create()
@@ -89,7 +89,7 @@ class FinfinneeController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.finfinnee.create', compact('jsonOptions','joption'));
+        return view('organization.qeellam.create', compact('jsonOptions','joption'));
     }
 
     public function store(Request $request)
@@ -116,7 +116,7 @@ class FinfinneeController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:finfinnee',
+            'email' => 'nullable|email|unique:q_wallaga',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -125,14 +125,14 @@ class FinfinneeController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        Finfinnee::create($validated);
+        Qeellam::create($validated);
 
-        return redirect()->route('finfinnee.index')->with('success','finfinnee Member Created Successfully');
+        return redirect()->route('qeellam.index')->with('success','qeellam Member Created Successfully');
     }
 
     public function edit($id)
     {
-        $finfinnee = Finfinnee::findOrFail($id);
+        $qeellam = Qeellam::findOrFail($id);
 
         $woredas = [
             'Aanaa Aqaaqii',
@@ -163,15 +163,15 @@ class FinfinneeController extends Controller
         }
         $joption = json_encode($org_option);
 
-        return view('organization.finfinnee.edit', compact('finfinnee','jsonOptions','joption'));
+        return view('organization.qeellam.edit', compact('qeellam','jsonOptions','joption'));
     }
 
     public function update(Request $request, $id)
     {
-        $finfinnee = Finfinnee::findOrFail($id);
+        $qeellam = Qeellam::findOrFail($id);
 
-        $last_thumb = $finfinnee->image;
-        $documentname = $finfinnee->document;
+        $last_thumb = $qeellam->image;
+        $documentname = $qeellam->document;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -192,7 +192,7 @@ class FinfinneeController extends Controller
             'organization_type' => 'nullable|string',
             'woreda' => 'nullable|string',
             'phone_number' => 'nullable|numeric|digits_between:9,14',
-            'email' => 'nullable|email|unique:finfinnee',
+            'email' => 'nullable|email|unique:q_wallaga',
             'payment_period' => 'nullable|string',
             'member_started' => 'nullable|date',
             'payment' => 'nullable|numeric',
@@ -201,17 +201,17 @@ class FinfinneeController extends Controller
         $validated['image'] = $last_thumb;
         $validated['document'] = $documentname;
 
-        $finfinnee->update($validated);
+        $qeellam->update($validated);
 
-        return redirect()->route('finfinnee.index')->with('update','finfinnee Member Updated Successfully');
+        return redirect()->route('qeellam.index')->with('update','qeellam Member Updated Successfully');
     }
 
     public function destroy($id)
     {
-        $finfinnee = Finfinnee::findOrFail($id);
-        $finfinnee->delete();
+        $qeellam = Qeellam::findOrFail($id);
+        $qeellam->delete();
 
-        return redirect()->route('finfinnee.index')->with('delete','finfinnee Member Deleted Successfully');
+        return redirect()->route('qeellam.index')->with('delete','qeellam Member Deleted Successfully');
     }
 
     public function import(Request $request)
@@ -221,10 +221,10 @@ class FinfinneeController extends Controller
         ]);
 
         try {
-            $maxId = Finfinnee::max('id');
-            Excel::import(new FinfinneeImport($maxId), $request->file('file'));
+            $maxId = Qeellam::max('id');
+            Excel::import(new qeellamImport($maxId), $request->file('file'));
 
-            return redirect()->route('finfinnee.index')->with('success','finfinnee Imported Successfully');
+            return redirect()->route('qeellam.index')->with('success','qeellam Imported Successfully');
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -232,9 +232,9 @@ class FinfinneeController extends Controller
 
     public function pay($id)
     {
-        $member = Finfinnee::findOrFail($id);
-        $model = "finfinnee";
+        $member = Qeellam::findOrFail($id);
+        $model = "qeellam";
 
-        return view('organization.finfinnee.create', compact('member', 'model'));
+        return view('organization.qeellam.create', compact('member', 'model'));
     }
 }

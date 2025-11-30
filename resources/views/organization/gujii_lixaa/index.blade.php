@@ -3,11 +3,11 @@
 @section('model','Gujii Lixaa')
 @section('count',$count)
 @section('title','Gujii Lixaa')
-@section('insert','gujii_lixaa')
+@section('insert','Gujii Lixaa')
 @section('icons','layout')
-@section('route',route('gujii_lixaa.create'))
-@section('import',route('gujii_lixaa.import'))
-@section('filterAction', route('gujii_lixaa.index'))
+@section('route',route('g_lixaa_lixaa.create'))
+@section('import',route('g_lixaa_lixaa.import'))
+@section('filterAction', route('g_lixaa_lixaa.index'))
 @section('filterName', 'woreda')
 @section('filterLabel', 'Woreda')
 @section('filterButton', 'Show Data')
@@ -60,19 +60,19 @@
                     <ul class="dropdown-menu" aria-labelledby="actionDropdown{{ $report->id }}">
 
                         {{-- Edit --}}
-                        @can('gujii-edit')
+                        @can('g_lixaa-edit')
                         <li>
                             <a class="dropdown-item"
-                               href="{{ route('gujii.edit', $report->id) }}">
+                               href="{{ route('g_lixaa.edit', $report->id) }}">
                                 Edit
                             </a>
                         </li>
                         @endcan
 
                         {{-- Delete --}}
-                        @can('gujii-delete')
+                        @can('g_lixaa-delete')
                         <li>
-                            <form action="{{ route('gujii.destroy', $report->id) }}"
+                            <form action="{{ route('g_lixaa.destroy', $report->id) }}"
                                   method="POST"
                                   onsubmit="return confirm('Are you sure?');">
                                 @csrf
@@ -90,7 +90,7 @@
                                 <span class="dropdown-item text-success">Paid</span>
                             @else
                                 <a class="dropdown-item text-warning"
-                                   href="{{ route('gujii.pay', $report->id) }}">
+                                   href="{{ route('g_lixaa.pay', $report->id) }}">
                                     Pay
                                 </a>
                             @endif
@@ -104,7 +104,6 @@
     </tbody>
 </table>
 
-{!! $reports->links() !!}
 
 <p class="text-muted">Select a woreda to see members.</p>
 

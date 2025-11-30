@@ -13,28 +13,21 @@
              <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
 
                  @if (session('status'))
-                 <div class="mb-4 font-medium text-sm text-green-600">
-                     {{ session('status') }}
-                 </div>
+                     <div class="mb-4 font-medium text-sm text-green-600">
+                         {{ session('status') }}
+                     </div>
                  @endif
 
                  <form class="form" method="POST" action="{{ route('login') }}">
                      @csrf
 
                      <div class="card card-login card-hidden mb-3">
-                         <div class="card-header card-header-primary text-center">
-                             <h4 class="card-title"><strong>{{ __('Login') }}</strong></h4>
-                             <div class="social-line">
-                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                     <i class="fa fa-facebook-square"></i>
-                                 </a>
-                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                     <i class="fa fa-twitter"></i>
-                                 </a>
-                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                     <i class="fa fa-google-plus"></i>
-                                 </a>
-                             </div>
+                         <div class="card-header card-header-success text-center">
+                             <h4 class="card-title"><strong>{{ __('ORMOIA DEVELOPMENT ASSOCIATION') }}</strong></h4>
+                             <img src="{{ asset('photo/1753264204855401.jpg') }}" alt="Logo" class="w-20 h-20"
+                                 style="border-radius: 50%; align-items: center; justify-content: center; display: block; margin-left: auto; margin-right: auto;" />
+
+
                          </div>
                          <div class="card-body">
                              {{-- <p class="card-description text-center"></p> --}}
@@ -46,12 +39,14 @@
                                              <i class="material-icons">email</i>
                                          </span>
                                      </div>
-                                     <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" required>
+                                     <input type="email" name="email" class="form-control"
+                                         placeholder="{{ __('Email...') }}" required>
                                  </div>
                                  @if ($errors->has('email'))
-                                 <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                                     <strong>{{ $errors->first('email') }}</strong>
-                                 </div>
+                                     <div id="email-error" class="error text-danger pl-3" for="email"
+                                         style="display: block;">
+                                         <strong>{{ $errors->first('email') }}</strong>
+                                     </div>
                                  @endif
                              </div>
                              <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
@@ -61,17 +56,20 @@
                                              <i class="material-icons">lock_outline</i>
                                          </span>
                                      </div>
-                                     <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" required>
+                                     <input type="password" name="password" id="password" class="form-control"
+                                         placeholder="{{ __('Password...') }}" required>
                                  </div>
                                  @if ($errors->has('password'))
-                                 <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
-                                     <strong>{{ $errors->first('password') }}</strong>
-                                 </div>
+                                     <div id="password-error" class="error text-danger pl-3" for="password"
+                                         style="display: block;">
+                                         <strong>{{ $errors->first('password') }}</strong>
+                                     </div>
                                  @endif
                              </div>
                              <div class="form-check mr-auto ml-3 mt-3">
                                  <label class="form-check-label">
-                                     <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
+                                     <input class="form-check-input" type="checkbox" name="remember"
+                                         {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
                                      <span class="form-check-sign">
                                          <span class="check"></span>
                                      </span>
@@ -79,7 +77,8 @@
                              </div>
                          </div>
                          <div class="card-footer justify-content-center">
-                             <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
+                             <button type="submit"
+                                 class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
                          </div>
                      </div>
                  </form>
@@ -88,7 +87,7 @@
      </div>
 
 
-     {{--<form method="POST" action="{{ route('login') }}">
+     {{-- <form method="POST" action="{{ route('login') }}">
 
      @csrf
 
@@ -120,7 +119,7 @@
              {{ __('Log in') }}
          </x-jet-button>
      </div>
-     </form>--}}
+     </form> --}}
      {{-- </x-jet-authentication-card> --}}
  </x-guest-layout>
 
