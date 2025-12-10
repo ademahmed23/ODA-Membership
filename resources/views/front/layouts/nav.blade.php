@@ -9,7 +9,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ route('front.news') }}">News</a></li>
                 <li><a href="{{ route('front.announcement') }}">Announcement</a></li>
-                <li><a href="{{ route('dashboard') }}">Login</a></li>
+                <li><a href="{{ route('login') }}">Login</a></li>
             </ul>
         </div>
     </div>

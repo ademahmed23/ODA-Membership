@@ -1,0 +1,14 @@
+    <script src="<?php echo e(asset('front/lib/jquery/dist/jquery.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/bootstrap/dist/js/bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/wow/dist/wow.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/isotope/dist/isotope.pkgd.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/imagesloaded/imagesloaded.pkgd.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/flexslider/jquery.flexslider.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/owl.carousel/dist/owl.carousel.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/smoothscroll.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/magnific-popup/dist/jquery.magnific-popup.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/lib/simple-text-rotator/jquery.simple-text-rotator.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/js/plugins.js')); ?>"></script>
+    <script src="<?php echo e(asset('front/js/main.js')); ?>"></script>
+<?php /**PATH C:\Users\ODA-IT\Documents\GitHub\ODA-Membership\resources\views/front/layouts/script.blade.php ENDPATH**/ ?>

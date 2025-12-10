@@ -124,11 +124,13 @@ class City1Controller extends Controller
         }
 
         $validated = $request->validate([
+            'memeber_id'=>'nullable|string',
             'first_name' => 'required|string',
             'middle_name' => 'nullable|string',
             'last_name' => 'required|string',
             'gender' => 'required|string',
             'age' => 'required|integer',
+            'age' => 'required|string',
             'address' => 'nullable|string',
             'contact_number' => 'nullable|numeric|digits_between:9,14',
             'woreda' => 'nullable|string',

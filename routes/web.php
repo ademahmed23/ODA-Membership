@@ -120,7 +120,7 @@ Route::get('/detail/{id}/{model}', DetailController::class);
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),
-//     'verified'
+//     'verified'   
 Route::middleware([
     'auth:web',
     config('jetstream.auth_session'),

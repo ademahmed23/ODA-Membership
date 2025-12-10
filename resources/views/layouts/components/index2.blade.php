@@ -14,7 +14,7 @@
                                       <div class="card-title d-flex align-items-start justify-content-between">
                                           <div class="avatar flex-shrink-0">
                                               {{-- insert icons dynamically from variable --}}
-                                              <i class="bx bxs-@yield('icons')" style="font-size: 2.5em;color:green;"></i>
+                                              <i class="bx bxs-city" style="font-size: 2.5em;color:green;"></i>
                                               {{-- <i class="bx bxs-user-circle"></i> --}}
                                           </div>
                                       </div>

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Services\FacebookService;
 
 class Dashboard2Controller extends Controller{
 
-    public function index(){
+    public function index(FacebookService $facebook){
         $urgent = Announcement::latest()->first();
 
             $citys = [
@@ -41,7 +42,8 @@ class Dashboard2Controller extends Controller{
         ];
     }
     
-        return view('dashboard2', [ 'cityCounts' => $cityCounts],compact('cityCounts','urgent'));
+$pageInfo = $facebook->getPageInfo();
+        return view('dashboard2', [ 'cityCounts' => $cityCounts],compact('cityCounts','urgent', 'pageInfo'));
     }
 
 }
