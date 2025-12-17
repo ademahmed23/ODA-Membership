@@ -120,7 +120,7 @@ Route::get('/detail/{id}/{model}', DetailController::class);
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),
-//     'verified'   
+//     'verified'
 Route::middleware([
     'auth:web',
     config('jetstream.auth_session'),
@@ -202,7 +202,7 @@ Route::middleware([
     Route::Post('qeellam/import', [QellamController::class, 'import'])->name('qeellam.import');
     Route::Post('sh_bahaa/import', [ShawaaBahaaController::class, 'import'])->name('sh_bahaa.import');
     Route::Post('sh_kaabaa/import', [ShawaaKaabaaController::class, 'import'])->name('sh_kaabaa.import');
-    Route::Post('sh_k_lixaa/import', [ShawaakibbaLixaaController::class, 'import'])->name('sh_k_lixaa.import');  
+    Route::Post('sh_k_lixaa/import', [ShawaakibbaLixaaController::class, 'import'])->name('sh_k_lixaa.import');
     Route::Post('sh_lixaa/import', [ShawaaLixaaController::class, 'import'])->name('sh_lixaa.import');
     Route::Post('w_bahaa/import', [WallaggaBahaaController::class, 'import'])->name('w_bahaa.import');
     Route::Post('w_lixaa/import', [WallaggaLixaaController::class, 'import'])->name('w_lixaa.import');
@@ -380,7 +380,7 @@ Route::middleware([
     Route::get('sh_lixaa-pay/{sh_lixaa}', [ShawaaLixaaController::class, 'pay'])->name('sh_lixaa.pay');
     Route::get('w_bahaa-pay/{w_bahaa}', [WallaggaBahaaController::class, 'pay'])->name('w_bahaa.pay');
     Route::get('w_lixaa-pay/{w_lixaa}', [WallaggaLixaaController::class, 'pay'])->name('w_lixaa.pay');
-    
+
 
     //Zone Member Pay Report
     Route::post('zoneMemberFee-report', [ZoneMemberFeeReport::class, 'index'])->name('zoneMemberFee.report');

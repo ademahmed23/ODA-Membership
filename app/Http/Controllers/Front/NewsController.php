@@ -16,6 +16,6 @@ class NewsController
             $news = News::latest()->paginate(9);
         }
 
-        return view('front.news', compact('latest', 'news'));
+        return view('front.index', compact('latest', 'news'));
     }
 }

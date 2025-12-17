@@ -2,11 +2,8 @@
 <html lang="en-US" dir="ltr">
 @include('front.layouts.header')
 <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+
     <main>
-        <div class="page-loader">
-            <div class="loader">Loading...</div>
-        </div>
-        @include('front.layouts.nav')
         <div class="main">
             @yield('content')
             @include('front.layouts.footer')
@@ -18,6 +15,6 @@
     JavaScripts
     =============================================
     -->
-    @include('front.layouts.script')
+    @include('front.layouts.js')
 </body>
 </html>

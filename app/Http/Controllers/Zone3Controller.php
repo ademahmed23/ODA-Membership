@@ -125,7 +125,6 @@ class Zone3Controller extends Controller
         } else {
             $documentname = 'default.pdf';
         }
-
         $validated = $request->validate([
             'first_name' => 'required|string',
             'middle_name' => 'nullable|string',

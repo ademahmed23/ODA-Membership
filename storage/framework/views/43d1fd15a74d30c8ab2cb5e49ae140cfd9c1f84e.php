@@ -1,54 +1,30 @@
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--
-    Document Title
-    =============================================
-    -->
-    <title>Oda</title>
-    <!--
-    Favicons
-    =============================================
-    -->
-    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="<?php echo e(asset('front/images/logo (1).png')); ?>">
-    <meta name="theme-color" content="#ffffff">
-    <!--
-    Stylesheets
-    =============================================
-
-    -->
-    <!-- Default stylesheets-->
-    <link href="<?php echo e(asset('front/lib/bootstrap/dist/css/bootstrap.min.css')); ?>" rel="stylesheet">
-    <!-- Template specific stylesheets-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-    <link href="<?php echo e(asset('front/lib/animate.css/animate.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('front/lib/components-font-awesome/css/font-awesome.min.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('front/lib/et-line-font/et-line-font.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('front/lib/flexslider/flexslider.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('front/lib/owl.carousel/dist/asset/owl.carousel.min.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('front/lib/owl.carousel/dist/asset/owl.theme.default.min.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('front/lib/magnific-popup/dist/magnific-popup.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('front/lib/simple-text-rotator/simpletextrotator.css')); ?>" rel="stylesheet">
-    <!-- Main stylesheet and color file-->
-    <link href="<?php echo e(asset('front/css/style.css')); ?>" rel="stylesheet">
-    <link id="color-scheme" href="<?php echo e(asset('front/css/colors/default.css')); ?>" rel="stylesheet">
-</head>
+ <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>ODA</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="<?php echo e(asset('frontend/css/bootstrap.min.css')); ?>">
+      <!-- style css -->
+      <link rel="stylesheet" href="<?php echo e(asset('frontend/css/style.css')); ?>">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="<?php echo e(asset('frontend/css/responsive.css')); ?>">
+      <!-- fevicon -->
+      <link rel="icon" href="<?php echo e(asset('frontend/images/fevicon.png')); ?>" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="<?php echo e(asset('frontend/css/jquery.mCustomScrollbar.min.css')); ?>">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   </head>
 <?php /**PATH C:\Users\ODA-IT\Documents\GitHub\ODA-Membership\resources\views/front/layouts/header.blade.php ENDPATH**/ ?>

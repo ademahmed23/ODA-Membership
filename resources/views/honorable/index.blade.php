@@ -1,4 +1,4 @@
-@extends('layouts.components.index')
+@extends('layouts.components.index2')
 @section('model','Honorable')
 @section('count',$count)
 @section('title','Honorable')

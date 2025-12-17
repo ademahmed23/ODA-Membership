@@ -10,18 +10,18 @@
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('regional-table', [])->html();
-} elseif ($_instance->childHasBeenRendered('oo1sZpG')) {
-    $componentId = $_instance->getRenderedChildComponentId('oo1sZpG');
-    $componentTag = $_instance->getRenderedChildComponentTagName('oo1sZpG');
+} elseif ($_instance->childHasBeenRendered('pV27erN')) {
+    $componentId = $_instance->getRenderedChildComponentId('pV27erN');
+    $componentTag = $_instance->getRenderedChildComponentTagName('pV27erN');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('oo1sZpG');
+    $_instance->preserveRenderedChild('pV27erN');
 } else {
     $response = \Livewire\Livewire::mount('regional-table', []);
     $html = $response->html();
-    $_instance->logRenderedChild('oo1sZpG', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('pV27erN', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.components.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ODA-IT\Documents\GitHub\ODA-Membership\resources\views/regional/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.components.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ODA-IT\Documents\GitHub\ODA-Membership\resources\views/regional/index.blade.php ENDPATH**/ ?>
